@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.92" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ToolBar prefHeight="40.0" prefWidth="600.0">
-        <items>
-          <Button mnemonicParsing="false" text="Home" />
-            <Button mnemonicParsing="false" text="TimeTable" />
-            <Button mnemonicParsing="false" text="Personal Times" />
-            <Button mnemonicParsing="false" text="Open Meets" />
-            <Button mnemonicParsing="false" text="Galas" />
-            <Button mnemonicParsing="false" text="Inbox" />
-        </items>
-      </ToolBar>
+      <Label layoutX="90.0" layoutY="14.0" text="Home">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Button layoutX="90.0" layoutY="96.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="119.0" text="TimeTable" textAlignment="CENTER" wrapText="true" />
+      <Button layoutX="241.0" layoutY="96.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="119.0" text="Personal Best Times" textAlignment="CENTER" wrapText="true" />
+      <Button layoutX="394.0" layoutY="96.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="119.0" text="Open Meets" textAlignment="CENTER" wrapText="true" />
+      <Button layoutX="90.0" layoutY="224.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="119.0" text="Galas" textAlignment="CENTER" wrapText="true" />
+      <Button layoutX="241.0" layoutY="224.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="119.0" text="Inbox" textAlignment="CENTER" wrapText="true" />
+      <Button layoutX="394.0" layoutY="224.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="119.0" text="Exit" textAlignment="CENTER" wrapText="true" />
    </children>
 </AnchorPane>

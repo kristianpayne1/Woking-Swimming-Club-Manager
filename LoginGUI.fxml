@@ -7,12 +7,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="293.0" prefWidth="265.0" xmlns="http://javafx.com/javafx/8.0.92" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="293.0" prefWidth="265.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="19.0" layoutY="14.0" prefHeight="83.0" prefWidth="228.0" text="Woking Swimming Club Club Manager" textAlignment="CENTER" wrapText="true">
+      <Label layoutX="19.0" layoutY="14.0" prefHeight="109.0" prefWidth="123.0" text="Woking Swimming Club" wrapText="true">
          <font>
-            <Font name="System Bold" size="19.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
       <TextField layoutX="59.0" layoutY="134.0" promptText="Username" />
