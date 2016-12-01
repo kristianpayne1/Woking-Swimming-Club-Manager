@@ -129,9 +129,8 @@ public class Users
     {
         boolean loginGranted = false;
         username = username;
-        System.out.println(username);
         String hash = null;
-        int salt = getSalt(username);
+        long salt = 6738476573483;
         String passwordSalt = password + salt;
         String passwordHash = convertToHash(passwordSalt);
 
@@ -176,15 +175,15 @@ public class Users
         }   
     }
 
-    public static int getSalt(String username) throws SQLException
+   /* public static int getSalt(String username) throws SQLException
     {
         int salt = 0;
-        PreparedStatement statement = Application.database.newStatement("SELECT Salt FROM Users WHERE UserName = ?");
+        PreparedStatement statement1 = Application.database.newStatement("SELECT Salt FROM Users WHERE UserName = ?");
 
-        if (statement != null)
+        if (statement1 != null)
         {
-            statement.setString(1, username);
-            ResultSet results = Application.database.runQuery(statement);
+            statement1.setString(1, username);
+            ResultSet results = Application.database.runQuery(statement1);
             if (results != null)
             {
                 System.out.println("1");
@@ -202,4 +201,5 @@ public class Users
         System.out.println(salt);
         return salt;
     }
+    */
 }

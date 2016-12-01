@@ -11,7 +11,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.event.EventHandler;
 import javafx.stage.WindowEvent;
 
-
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,12 +25,10 @@ public class PrimarySceneController
     /* These FXML variables exactly corrispond to the controls that make up the scene, as designed in Scene 
      * Builder. It is important to ensure that these match perfectly or the controls won't be interactive. */
 
-
     @FXML   private Label titleLabel;
     @FXML   private Button loginButton;
     @FXML   private TextField usernameField;
     @FXML   private TextField passwordField;
-
 
     public PrimarySceneController()          // The constructor method, called first when the scene is loaded.
     {
@@ -101,11 +98,9 @@ public class PrimarySceneController
 
         String username = usernameField.getText();
         String password = passwordField.getText();
-        
-        System.out.println(password);
-        
+
         boolean loginSuccess = false;
-        
+
         if (username != null || password != null){
             loginSuccess = Users.isLoginValid(username, password);
             if (loginSuccess = true){
