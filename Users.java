@@ -130,20 +130,26 @@ public class Users
         boolean loginGranted = false;
         username = username;
         String hash = null;
-        long salt = 6738476573483;
+        long salt = 67384;
         String passwordSalt = password + salt;
         String passwordHash = convertToHash(passwordSalt);
-
-        PreparedStatement statement = Application.database.newStatement("SELECT Hash FROM Users WHERE UserName = ?");
-        if (statement != null)
+        PreparedStatement statement4 = Application.database.newStatement("SELECT Hash FROM Users WHERE UserName = ?"); 
+        if (statement4 != null)
         {
-            statement.setString(1, username);
-            ResultSet results = Application.database.runQuery(statement);
+            statement4.setString(1, username);
+            ResultSet results = Application.database.runQuery(statement4);
             if (results != null)
             {
                 try {
                     while (results.next() ){
                         hash = new String (results.getString("Hash"));
+                    }
+                    if (passwordHash.equals( hash))
+                    {
+                        System.out.println("Login successfull");
+                        loginGranted = true;
+                    }else{
+                        System.out.println("Login failed");
                     }
                 }
                 catch (SQLException resultsexception)
@@ -152,16 +158,7 @@ public class Users
                 }
             }
         } 
-
-        if (passwordHash == hash)
-        {
-            System.out.println("Login successfull");
-            loginGranted = true;
-            return loginGranted;
-        }else{
-            System.out.println("Login failed");
-            return loginGranted;
-        }
+        return loginGranted;
     }
 
     public static String convertToHash(String passwordSalt)
@@ -175,31 +172,31 @@ public class Users
         }   
     }
 
-   /* public static int getSalt(String username) throws SQLException
+    /* public static int getSalt(String username) throws SQLException
     {
-        int salt = 0;
-        PreparedStatement statement1 = Application.database.newStatement("SELECT Salt FROM Users WHERE UserName = ?");
+    int salt = 0;
+    PreparedStatement statement1 = Application.database.newStatement("SELECT Salt FROM Users WHERE UserName = ?");
 
-        if (statement1 != null)
-        {
-            statement1.setString(1, username);
-            ResultSet results = Application.database.runQuery(statement1);
-            if (results != null)
-            {
-                System.out.println("1");
-                try {
-                    while (results.next() ){
-                        salt = new Integer (results.getInt("Salt"));
-                    }
-                }
-                catch (SQLException resultsexception)
-                {
-                    System.out.println("Database result processing error: " + resultsexception.getMessage());
-                }
-            }
-        }
-        System.out.println(salt);
-        return salt;
+    if (statement1 != null)
+    {
+    statement1.setString(1, username);
+    ResultSet results = Application.database.runQuery(statement1);
+    if (results != null)
+    {
+    System.out.println("1");
+    try {
+    while (results.next() ){
+    salt = new Integer (results.getInt("Salt"));
     }
-    */
+    }
+    catch (SQLException resultsexception)
+    {
+    System.out.println("Database result processing error: " + resultsexception.getMessage());
+    }
+    }
+    }
+    System.out.println(salt);
+    return salt;
+    }
+     */
 }
