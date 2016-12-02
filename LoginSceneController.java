@@ -106,6 +106,7 @@ public class LoginSceneController
                 loginSuccess = Users.isLoginValid(username, password);
                 if (loginSuccess == true){
                     openNewScene();
+                    Users.setActiveUser(username);
                     stage.close();
                 }else{
                     loginAttempts++; 
@@ -131,7 +132,7 @@ public class LoginSceneController
             stage2.setScene(new Scene(loader.load()));
             stage.setResizable(false);
             stage2.show();           
-            SecondarySceneController controller2 = loader.getController();
+            HomeSceneController controller2 = loader.getController();
             controller2.prepareStageEvents(stage2);
 
             controller2.setParent(this);

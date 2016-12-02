@@ -90,7 +90,7 @@ public class InboxSceneController
         readAll();
     }
 
-    public void setParent(PrimarySceneController parent)
+    public void setParent1(HomeSceneController parent)
     {
         this.parent = parent;
     }
@@ -184,11 +184,11 @@ public class InboxSceneController
             stage3.setScene(new Scene(loader.load()));
             stage.setResizable(false);
             stage3.show();           
-            ThirdSceneController controller3 = loader.getController();
-            controller3.prepareStageEvents(stage3);
+            ReplySceneController controller4 = loader.getController();
+            controller4.prepareStageEvents(stage3);
 
-            controller3.setParent2(this);
-            if (MessageID != 0) controller3.loadItem(MessageID);
+            controller4.setParent2(this);
+            if (MessageID != 0) controller4.loadItem(MessageID);
         }
         catch (Exception ex)
         {

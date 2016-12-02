@@ -79,13 +79,46 @@ public class Users
         return receiverID;
     }
 
+    public static void setActiveUser(String username) throws SQLException
+    {
+        PreparedStatement statement = Application.database.newStatement("UPDATE Users SET Active = 1 WHERE UserName = ?");
+        try{
+            statement.setString(1, username);
+        }
+        catch (SQLException resultsexception)
+        {
+            System.out.println("Database result processing error: " + resultsexception.getMessage());
+        }
+        finally
+        {
+            statement.executeUpdate();
+            statement.close();
+        }
+    }
+    
+    public static void logOffUser() throws SQLException
+    {
+        PreparedStatement statement = Application.database.newStatement("UPDATE Users SET Active = 0 WHERE Active = ");
+        try{
+            statement.setInt(1, 0);
+        }
+        catch (SQLException resultsexception)
+        {
+            System.out.println("Database result processing error: " + resultsexception.getMessage());
+        }
+        finally
+        {
+            statement.executeUpdate();
+            statement.close();
+        }
+    }
+
     public static Integer getActiveUserID(){
         Integer userID = null;
-        PreparedStatement statement2 = Application.database.newStatement("SELECT UserID FROM Users WHERE Active = ?"); 
+        PreparedStatement statement2 = Application.database.newStatement("SELECT UserID FROM Users WHERE Active = 1"); 
         try{
             if (statement2 != null)
             {
-                statement2.setInt(1, 1);
                 ResultSet results = Application.database.runQuery(statement2);
 
                 if (results != null)
@@ -144,7 +177,7 @@ public class Users
                     while (results.next() ){
                         hash = new String (results.getString("Hash"));
                     }
-                    if (passwordHash.equals( hash))
+                    if (passwordHash.equals(hash))
                     {
                         System.out.println("Login successfull");
                         loginGranted = true;

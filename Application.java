@@ -39,7 +39,7 @@ public class Application
             /* Loading the scene will have resulted in the creation of a scene controller. In order for this
              * controller to have direct access to the stage its scene is displayed, the stage is passed to the 
              * controller's prepareStage method. */
-            PrimarySceneController controller = loader.getController();
+            LoginSceneController controller = loader.getController();
             controller.prepareStageEvents(stage);
         }
         catch (Exception ex)    // If anything goes wrong starting the application then call the terminate method.
