@@ -1,33 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="352.0" prefWidth="657.0" xmlns="http://javafx.com/javafx/8.0.92" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="37.0" layoutY="46.0" text="TimeTable">
+      <Label layoutX="55.0" layoutY="14.0" text="TimeTable">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <ToolBar prefHeight="35.0" prefWidth="600.0">
-        <items>
-          <Button mnemonicParsing="false" text="Home" />
-            <Button mnemonicParsing="false" text="Personal Best Times" />
-            <Button mnemonicParsing="false" text="Open Meets" />
-            <Button mnemonicParsing="false" text="Galas" />
-            <Button mnemonicParsing="false" text="Inbox " />
-            <Button mnemonicParsing="false" text="Exit" />
-        </items>
-      </ToolBar>
-      <Label layoutX="37.0" layoutY="81.0" text="Squad: ">
+      <Label layoutX="55.0" layoutY="49.0" text="Squad: ">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
+      <Label layoutX="92.0" layoutY="89.0" text="Monday" />
+      <Label layoutX="172.0" layoutY="89.0" text="Tuesday" />
+      <Label layoutX="243.0" layoutY="89.0" text="Wednesday" />
+      <Label layoutX="329.0" layoutY="89.0" text="Thursday" />
+      <Label layoutX="417.0" layoutY="89.0" text="Friday" />
+      <Label layoutX="487.0" layoutY="89.0" text="Saturday" />
+      <Label layoutX="566.0" layoutY="89.0" text="Sunday" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5e98ff" height="55.0" layoutX="550.0" layoutY="112.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="55.0" layoutX="550.0" layoutY="167.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="55.0" layoutX="550.0" layoutY="277.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ee6d6d" height="55.0" layoutX="550.0" layoutY="222.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5e98ff" height="55.0" layoutX="470.0" layoutY="112.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="55.0" layoutX="470.0" layoutY="167.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="55.0" layoutX="470.0" layoutY="277.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ee6d6d" height="55.0" layoutX="470.0" layoutY="222.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5e98ff" height="55.0" layoutX="393.0" layoutY="112.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="55.0" layoutX="393.0" layoutY="167.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="55.0" layoutX="393.0" layoutY="277.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ee6d6d" height="55.0" layoutX="393.0" layoutY="222.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5e98ff" height="55.0" layoutX="313.0" layoutY="112.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="55.0" layoutX="313.0" layoutY="167.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="55.0" layoutX="313.0" layoutY="277.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ee6d6d" height="55.0" layoutX="313.0" layoutY="222.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5e98ff" height="55.0" layoutX="234.0" layoutY="112.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="55.0" layoutX="234.0" layoutY="167.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="55.0" layoutX="234.0" layoutY="277.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ee6d6d" height="55.0" layoutX="234.0" layoutY="222.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5e98ff" height="55.0" layoutX="154.0" layoutY="112.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="55.0" layoutX="154.0" layoutY="167.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="55.0" layoutX="154.0" layoutY="277.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ee6d6d" height="55.0" layoutX="154.0" layoutY="222.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5e98ff" height="55.0" layoutX="74.0" layoutY="112.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="55.0" layoutX="74.0" layoutY="167.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="55.0" layoutX="74.0" layoutY="277.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ee6d6d" height="55.0" layoutX="74.0" layoutY="222.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Label layoutX="42.0" layoutY="131.0" text="Time" />
+      <Label layoutX="41.0" layoutY="186.0" text="Pool" />
+      <Label layoutX="42.0" layoutY="241.0" text="Time" />
+      <Label layoutX="43.0" layoutY="296.0" text="Pool" />
+      <Label layoutX="7.0" layoutY="159.0" text="Morning">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="7.0" layoutY="269.0" text="Evening">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Text layoutX="100.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="180.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="260.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="339.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="419.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="496.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="576.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="101.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="181.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="261.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="340.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="420.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="497.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="577.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="101.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="181.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="261.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="340.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="420.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="497.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="577.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="101.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="181.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="261.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="340.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="420.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="497.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
+      <Text layoutX="577.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------" />
    </children>
 </AnchorPane>
