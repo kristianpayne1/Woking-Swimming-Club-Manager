@@ -83,6 +83,19 @@ public class HomeSceneController
         openNewSceneInbox();
     }
 
+    @FXML void exitButtonClicked() {
+        System.out.println("Exit button was clicked!");
+        stage.close();
+        try{
+            Users.logOffUser();
+        }
+        catch (SQLException se)
+        {
+            se.printStackTrace();
+        }
+        Application.terminate();
+    }
+
     void openNewSceneInbox()
     {
 

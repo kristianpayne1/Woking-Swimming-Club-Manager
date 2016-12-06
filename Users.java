@@ -95,7 +95,7 @@ public class Users
             statement.close();
         }
     }
-    
+
     public static void logOffUser() throws SQLException
     {
         PreparedStatement statement = Application.database.newStatement("UPDATE Users SET Active = 0 WHERE Active = ?");
@@ -163,7 +163,7 @@ public class Users
         boolean loginGranted = false;
         username = username;
         String hash = null;
-        long salt = 67384;
+        long salt = getSalt(username);
         String passwordSalt = password + salt;
         String passwordHash = convertToHash(passwordSalt);
         PreparedStatement statement4 = Application.database.newStatement("SELECT Hash FROM Users WHERE UserName = ?"); 
@@ -205,31 +205,31 @@ public class Users
         }   
     }
 
-    /* public static int getSalt(String username) throws SQLException
+    public static int getSalt(String username) throws SQLException
     {
-    int salt = 0;
-    PreparedStatement statement1 = Application.database.newStatement("SELECT Salt FROM Users WHERE UserName = ?");
+        int salt = 0;
+        PreparedStatement statement1 = Application.database.newStatement("SELECT Salt FROM Users WHERE UserName = ?");
 
-    if (statement1 != null)
-    {
-    statement1.setString(1, username);
-    ResultSet results = Application.database.runQuery(statement1);
-    if (results != null)
-    {
-    System.out.println("1");
-    try {
-    while (results.next() ){
-    salt = new Integer (results.getInt("Salt"));
+        if (statement1 != null)
+        {
+            statement1.setString(1, username);
+            ResultSet results = Application.database.runQuery(statement1);
+            if (results != null)
+            {
+                System.out.println("1");
+                try {
+                    while (results.next() ){
+                        salt = new Integer (results.getInt("Salt"));
+                    }
+                }
+                catch (SQLException resultsexception)
+                {
+                    System.out.println("Database result processing error: " + resultsexception.getMessage());
+                }
+            }
+        }
+        System.out.println(salt);
+        return salt;
     }
-    }
-    catch (SQLException resultsexception)
-    {
-    System.out.println("Database result processing error: " + resultsexception.getMessage());
-    }
-    }
-    }
-    System.out.println(salt);
-    return salt;
-    }
-     */
+
 }
