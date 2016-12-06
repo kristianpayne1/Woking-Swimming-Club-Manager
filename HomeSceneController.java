@@ -41,9 +41,9 @@ public class HomeSceneController
                     try{
                         Users.logOffUser();
                     }
-                    catch (SQLException resultexception)
+                    catch (SQLException se)
                     {
-                        System.out.println("Database result processing error: " + resultsexception.getMessage());
+                        se.printStackTrace();
                     }
                     Application.terminate();
                 }

@@ -98,9 +98,9 @@ public class Users
     
     public static void logOffUser() throws SQLException
     {
-        PreparedStatement statement = Application.database.newStatement("UPDATE Users SET Active = 0 WHERE Active = ");
+        PreparedStatement statement = Application.database.newStatement("UPDATE Users SET Active = 0 WHERE Active = ?");
         try{
-            statement.setInt(1, 0);
+            statement.setInt(1, 1);
         }
         catch (SQLException resultsexception)
         {
@@ -138,7 +138,7 @@ public class Users
     public static String getUsername(Integer CreaterID)
     {
         String username = null;
-        PreparedStatement statement3 = Application.database.newStatement("SELECT UserName FROM Users WHERE UserID IN ('?')"); 
+        PreparedStatement statement3 = Application.database.newStatement("SELECT UserName FROM Users WHERE UserID = ?"); 
         try{
             if (statement3 != null)
             {

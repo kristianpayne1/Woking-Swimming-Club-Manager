@@ -36,6 +36,7 @@ public class InboxSceneController
     @FXML   private Button replyButton;
     @FXML   private Button deleteButton;
     @FXML   private Button backButton;
+    @FXML   private Button composeButton;
     @FXML   private TableView<Message> tableView;
     @FXML   private TableColumn<Message, String> fromColumn;
     @FXML   private TableColumn<Message, String> subjectColumn;
@@ -70,6 +71,7 @@ public class InboxSceneController
             assert subjectField != null : "Can't find subjectField";
             assert createField != null : "Can't find createField";
             assert messageArea != null : "Can't find messageArea";
+            assert composeButton != null : "Can't find composeButton";
             assert replyButton != null : "Can't find replyButton";
             assert deleteButton != null : "Can't find deleteButton";
             assert backButton != null : "Can't find backButton";
@@ -100,7 +102,7 @@ public class InboxSceneController
         list.clear();       // Clear the target list first.
 
         /* Create a new prepared statement object with the desired SQL query. */
-        PreparedStatement statement = Application.database.newStatement("SELECT MessageID, Subject, CreaterID, MessageBody, CreateDate FROM Message WHERE recieverID = ?"); 
+        PreparedStatement statement = Application.database.newStatement("SELECT MessageID, Subject, CreaterID, MessageBody, CreateDate FROM Message WHERE RecieverID = ?"); 
 
         if (statement != null)      // Assuming the statement correctly initated...
         {
@@ -172,10 +174,22 @@ public class InboxSceneController
         readAll();
     }
 
+    @FXML void composeButtonClicked()
+    {
+        System.out.println("Compose button was clicked");
+        openNewScene(0);
+    }
+
+    @FXML void backButtonClicked()
+    {
+        System.out.println("Back button clicked");
+        stage.close();
+    }
+
     void openNewScene(int MessageID)
     {
 
-        FXMLLoader loader = new FXMLLoader(Application.class.getResource("replyGUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(Application.class.getResource("messageGUI.fxml"));
 
         try
         {
@@ -184,11 +198,13 @@ public class InboxSceneController
             stage3.setScene(new Scene(loader.load()));
             stage.setResizable(false);
             stage3.show();           
-            ReplySceneController controller4 = loader.getController();
+            MessageSceneController controller4 = loader.getController();
             controller4.prepareStageEvents(stage3);
 
             controller4.setParent2(this);
-            if (MessageID != 0) controller4.loadItem(MessageID);
+            if (MessageID != 0) {
+                controller4.loadItem(MessageID);
+            }
         }
         catch (Exception ex)
         {
