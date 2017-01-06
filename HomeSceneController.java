@@ -80,11 +80,6 @@ public class HomeSceneController
 
     @FXML   void inboxButtonClicked() {
         System.out.println("Inbox button clicked");
-        openNewSceneInbox();
-    }
-
-    void openNewSceneInbox()
-    {
 
         FXMLLoader loader = new FXMLLoader(Application.class.getResource("inboxGUI.fxml"));
 
@@ -106,5 +101,43 @@ public class HomeSceneController
             System.out.println(ex.getMessage());
         }
 
+    }
+
+    @FXML   void timetableButtonClicked(){
+        System.out.println("Timetable button clicked");
+
+        FXMLLoader loader = new FXMLLoader(Application.class.getResource("timetableGUI.fxml"));
+
+        try
+        {
+            Stage stage3 = new Stage();
+            stage3.setTitle("Timetable");
+            stage3.setScene(new Scene(loader.load()));
+            stage.setResizable(false);
+            stage3.show();           
+            TimetableSceneController controller3 = loader.getController();
+            controller3.prepareStageEvents(stage3);
+
+            controller3.setParent1(this);
+
+        }
+        catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML   void exitButtonClicked()
+    {
+        System.out.println("Close button was clicked!");
+        stage.close();
+        try{
+            Users.logOffUser();
+        }
+        catch (SQLException se)
+        {
+            se.printStackTrace();
+        }
+        Application.terminate();
     }
 }

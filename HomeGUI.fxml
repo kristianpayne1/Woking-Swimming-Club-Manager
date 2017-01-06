@@ -13,12 +13,12 @@
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <Button fx:id="timetableButton" layoutX="90.0" layoutY="96.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="119.0" text="TimeTable" textAlignment="CENTER" wrapText="true" />
+      <Button fx:id="timetableButton" layoutX="90.0" layoutY="96.0" mnemonicParsing="false" onMouseClicked="#timetableButtonClicked" prefHeight="110.0" prefWidth="119.0" text="TimeTable" textAlignment="CENTER" wrapText="true" />
       <Button fx:id="PBButton" layoutX="241.0" layoutY="96.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="119.0" text="Personal Best Times" textAlignment="CENTER" wrapText="true" />
       <Button fx:id="openMeetButton" layoutX="394.0" layoutY="96.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="119.0" text="Open Meets" textAlignment="CENTER" wrapText="true" />
       <Button fx:id="galasButton" layoutX="90.0" layoutY="224.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="119.0" text="Galas" textAlignment="CENTER" wrapText="true" />
       <Button fx:id="inboxButton" layoutX="241.0" layoutY="224.0" mnemonicParsing="false" onMouseClicked="#inboxButtonClicked" prefHeight="110.0" prefWidth="119.0" text="Inbox" textAlignment="CENTER" wrapText="true" />
-      <Button fx:id="exitButton" layoutX="394.0" layoutY="224.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="119.0" text="Exit" textAlignment="CENTER" wrapText="true" />
+      <Button fx:id="exitButton" layoutX="394.0" layoutY="224.0" mnemonicParsing="false" onMouseClicked="#exitButtonClicked" prefHeight="110.0" prefWidth="119.0" text="Exit" textAlignment="CENTER" wrapText="true" />
       <Canvas height="73.0" layoutX="14.0" layoutY="14.0" width="81.0" />
    </children>
 </AnchorPane>
