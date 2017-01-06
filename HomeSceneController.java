@@ -80,6 +80,24 @@ public class HomeSceneController
 
     @FXML   void inboxButtonClicked() {
         System.out.println("Inbox button clicked");
+        openNewSceneInbox();
+    }
+
+    @FXML void exitButtonClicked() {
+        System.out.println("Exit button was clicked!");
+        stage.close();
+        try{
+            Users.logOffUser();
+        }
+        catch (SQLException se)
+        {
+            se.printStackTrace();
+        }
+        Application.terminate();
+    }
+
+    void openNewSceneInbox()
+    {
 
         FXMLLoader loader = new FXMLLoader(Application.class.getResource("inboxGUI.fxml"));
 
@@ -127,17 +145,4 @@ public class HomeSceneController
         }
     }
 
-    @FXML   void exitButtonClicked()
-    {
-        System.out.println("Close button was clicked!");
-        stage.close();
-        try{
-            Users.logOffUser();
-        }
-        catch (SQLException se)
-        {
-            se.printStackTrace();
-        }
-        Application.terminate();
-    }
 }
