@@ -4,18 +4,31 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="259.0" prefWidth="265.0" xmlns="http://javafx.com/javafx/8.0.92" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginSceneController">
+<AnchorPane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="309.0" prefWidth="265.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginSceneController">
    <children>
       <Label fx:id="titleLabel" layoutX="19.0" layoutY="14.0" prefHeight="109.0" prefWidth="123.0" text="Woking Swimming Club" wrapText="true">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="usernameField" layoutX="59.0" layoutY="134.0" promptText="Username" />
-      <PasswordField fx:id="passwordField" layoutX="59.0" layoutY="167.0" promptText="Password" />
-      <Button fx:id="loginButton" layoutX="59.0" layoutY="208.0" mnemonicParsing="false" onMouseClicked="#loginClicked" prefHeight="25.0" prefWidth="149.0" text="Login" />
+      <TextField fx:id="usernameField" layoutX="58.0" layoutY="174.0" promptText="Username" />
+      <PasswordField fx:id="passwordField" layoutX="58.0" layoutY="207.0" promptText="Password" />
+      <Button fx:id="loginButton" layoutX="58.0" layoutY="248.0" mnemonicParsing="false" onMouseClicked="#loginClicked" prefHeight="25.0" prefWidth="149.0" text="Login" />
+      <ImageView fx:id="WokingLogo" fitHeight="95.0" fitWidth="101.0" layoutX="151.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/064c83e4-2267-46ed-8059-3abe2febfbd4_400x400.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="loginLabel" layoutX="82.0" layoutY="123.0" text="🔒 LOGIN" textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="failedLabel" layoutX="43.0" layoutY="141.0" prefHeight="309.0" prefWidth="265.0" text="Incorrect username or password. " textAlignment="CENTER" textFill="RED" visible="false" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

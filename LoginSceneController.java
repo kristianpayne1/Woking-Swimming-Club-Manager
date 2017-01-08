@@ -27,6 +27,9 @@ public class LoginSceneController
      * Builder. It is important to ensure that these match perfectly or the controls won't be interactive. */
 
     @FXML   private Label titleLabel;
+    @FXML   private Label loginLabel;
+    @FXML   private Label failedLabel;
+    @FXML   private ImageView WokingLogo;
     @FXML   private Button loginButton;
     @FXML   private TextField usernameField;
     @FXML   private TextField passwordField;
@@ -53,11 +56,14 @@ public class LoginSceneController
         System.out.println("Asserting controls...");
         try
         {
-
+            
             assert loginButton != null : "Can't find login button";
             assert usernameField != null : "Can't find username field";
             assert passwordField != null : "Can't find password field";
             assert titleLabel != null : "Can't find title label";
+            assert WokingLogo != null : "Can't find imageview";
+            assert loginLabel != null :"Can't find login label";
+            assert failedLabel != null :"Can't find failed label";
 
         }
         catch (AssertionError ae)
@@ -110,6 +116,7 @@ public class LoginSceneController
                     stage.close();
                 }else{
                     loginAttempts++; 
+                    failedLabel.setVisible(true);
                 }
             }else{
                 System.out.println("No username or password entered");

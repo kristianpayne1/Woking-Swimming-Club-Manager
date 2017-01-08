@@ -216,7 +216,6 @@ public class Users
             ResultSet results = Application.database.runQuery(statement1);
             if (results != null)
             {
-                System.out.println("1");
                 try {
                     while (results.next() ){
                         salt = new Integer (results.getInt("Salt"));
@@ -228,7 +227,6 @@ public class Users
                 }
             }
         }
-        System.out.println(salt);
         return salt;
     }
 
