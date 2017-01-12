@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="344.0" prefWidth="419.0" xmlns="http://javafx.com/javafx/8.0.92" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="PBTimesTitle" layoutX="97.0" layoutY="14.0" text="Personal Best Times">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableView50m" layoutX="59.0" layoutY="81.0" prefHeight="78.0" prefWidth="301.0">
+        <columns>
+          <TableColumn fx:id="tableColumnFree50m" prefWidth="75.0" text="Free" />
+          <TableColumn fx:id="tableColumnBack50m" prefWidth="75.0" text="Back" />
+            <TableColumn fx:id="tableColumnBreast50m" prefWidth="75.0" text="Breast" />
+            <TableColumn fx:id="tableColumnFly50m" prefWidth="75.0" text="Fly" />
+        </columns>
+      </TableView>
+      <TableView layoutX="59.0" layoutY="190.0" prefHeight="78.0" prefWidth="301.0">
+         <columns>
+            <TableColumn fx:id="tableColumnFree100m" prefWidth="75.0" text="Free" />
+            <TableColumn fx:id="tableColumnBack100m" prefWidth="75.0" text="Back" />
+            <TableColumn fx:id="tableColumnBreast100m" prefWidth="75.0" text="Breast" />
+            <TableColumn fx:id="tableColumnFly100m" prefWidth="75.0" text="Fly" />
+         </columns>
+      </TableView>
+      <Label fx:id="label50m" layoutX="188.0" layoutY="54.0" text="50m " textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="label100m" layoutX="188.0" layoutY="163.0" text="100m" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="ViewProgressButton" layoutX="59.0" layoutY="289.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="301.0" text="View Progression Graphs" />
+      <Button fx:id="backButton" layoutX="353.0" layoutY="19.0" mnemonicParsing="false" text="Back" />
+   </children>
+</AnchorPane>

@@ -14,6 +14,7 @@ public class HomeSceneController
     private LoginSceneController parent;
 
     @FXML   private Label homeTitle;
+    @FXML   private Label ActiveUserLabel;
     @FXML   private Button timetableButton;
     @FXML   private Button PBButton;
     @FXML   private Button openMeetButton;
@@ -62,6 +63,7 @@ public class HomeSceneController
             assert galasButton != null : "Can't find galasButton";
             assert inboxButton != null : "Can't find inboxButton";
             assert exitButton != null : "Can't find exitButton";
+            assert ActiveUserLabel != null : "Can't find Active User Label";
         }
         catch (AssertionError ae)
         {
