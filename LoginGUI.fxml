@@ -9,11 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<<<<<<< HEAD
+
 <AnchorPane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="309.0" prefWidth="265.0" xmlns="http://javafx.com/javafx/8.0.92" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginSceneController">
-=======
 <AnchorPane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="309.0" prefWidth="265.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginSceneController">
->>>>>>> 58c6924005981d3e9c271c550b17597d55d0e168
    <children>
       <Label fx:id="titleLabel" layoutX="19.0" layoutY="14.0" prefHeight="109.0" prefWidth="123.0" text="Woking Swimming Club" wrapText="true">
          <font>
@@ -33,10 +31,8 @@
             <Font size="24.0" />
          </font>
       </Label>
-<<<<<<< HEAD
+
       <Label fx:id="failedLabel" layoutX="50.0" layoutY="146.0" prefHeight="25.0" prefWidth="185.0" text="Incorrect username or password. " textAlignment="CENTER" textFill="RED" visible="false" wrapText="true" AnchorPane.bottomAnchor="138.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="146.0" />
-=======
       <Label fx:id="failedLabel" layoutX="43.0" layoutY="141.0" prefHeight="309.0" prefWidth="265.0" text="Incorrect username or password. " textAlignment="CENTER" textFill="RED" visible="false" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
->>>>>>> 58c6924005981d3e9c271c550b17597d55d0e168
    </children>
 </AnchorPane>
