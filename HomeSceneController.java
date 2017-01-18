@@ -147,4 +147,27 @@ public class HomeSceneController
         }
     }
 
+    @FXML   void PBTimesButtonClicked(){
+        System.out.println("PBTimes button clicked");
+
+        FXMLLoader loader = new FXMLLoader(Application.class.getResource("PBTimesGUI.fxml"));
+
+        try
+        {
+            Stage stage3 = new Stage();
+            stage3.setTitle("PBTimes");
+            stage3.setScene(new Scene(loader.load()));
+            stage.setResizable(false);
+            stage3.show();           
+            PBTimesSceneController controller3 = loader.getController();
+            controller3.prepareStageEvents(stage3);
+
+            controller3.setParent1(this);
+
+        }
+        catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

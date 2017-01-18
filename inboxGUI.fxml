@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.92" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InboxSceneController">
+<AnchorPane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InboxSceneController">
    <children>
       <TableView fx:id="tableView" layoutX="14.0" layoutY="14.0" onMouseClicked="#tableViewClicked" prefHeight="373.0" prefWidth="352.0">
         <columns>
@@ -23,13 +23,13 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="fromField" disable="true" editable="false" layoutX="381.0" layoutY="63.0" prefHeight="25.0" prefWidth="208.0" />
-      <TextField fx:id="subjectField" disable="true" editable="false" layoutX="381.0" layoutY="99.0" prefHeight="25.0" prefWidth="208.0" />
-      <TextArea fx:id="messageArea" disable="true" editable="false" layoutX="381.0" layoutY="169.0" prefHeight="164.0" prefWidth="208.0" />
+      <TextField fx:id="fromField" disable="true" editable="false" layoutX="381.0" layoutY="63.0" prefHeight="25.0" prefWidth="208.0" promptText="From" />
+      <TextField fx:id="subjectField" disable="true" editable="false" layoutX="381.0" layoutY="99.0" prefHeight="25.0" prefWidth="208.0" promptText="Subject" />
+      <TextArea fx:id="messageArea" disable="true" editable="false" layoutX="381.0" layoutY="169.0" prefHeight="164.0" prefWidth="208.0" promptText="Message" />
       <Button fx:id="replyButton" disable="true" layoutX="406.0" layoutY="348.0" mnemonicParsing="false" onMouseClicked="#replyButtonPressed" prefHeight="25.0" prefWidth="65.0" text="Reply" />
       <Button fx:id="deleteButton" disable="true" layoutX="504.0" layoutY="348.0" mnemonicParsing="false" onMouseClicked="#deleteButtonPressed" prefHeight="25.0" prefWidth="65.0" text="Delete" />
       <Button fx:id="backButton" layoutX="380.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" prefHeight="35.0" prefWidth="51.0" text="Back" />
-      <TextField fx:id="createField" disable="true" editable="false" layoutX="381.0" layoutY="135.0" prefHeight="25.0" prefWidth="208.0" />
+      <TextField fx:id="createField" disable="true" editable="false" layoutX="381.0" layoutY="135.0" prefHeight="25.0" prefWidth="208.0" promptText="Date Sent" />
       <Button fx:id="composeButton" layoutX="517.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#composeButtonClicked" prefHeight="35.0" prefWidth="72.0" text="Compose" />
    </children>
 </AnchorPane>

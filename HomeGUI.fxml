@@ -14,7 +14,7 @@
          </font>
       </Label>
       <Button fx:id="timetableButton" layoutX="53.0" layoutY="97.0" mnemonicParsing="false" onMouseClicked="#timetableButtonClicked" prefHeight="110.0" prefWidth="119.0" text="TimeTable" textAlignment="CENTER" wrapText="true" />
-      <Button fx:id="PBButton" layoutX="204.0" layoutY="97.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="119.0" text="Personal Best Times" textAlignment="CENTER" wrapText="true" />
+      <Button fx:id="PBButton" layoutX="204.0" layoutY="97.0" mnemonicParsing="false" onMouseClicked="#PBTimesButtonClicked" prefHeight="110.0" prefWidth="119.0" text="Personal Best Times" textAlignment="CENTER" wrapText="true" />
       <Button fx:id="openMeetButton" layoutX="357.0" layoutY="97.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="119.0" text="Open Meets" textAlignment="CENTER" wrapText="true" />
       <Button fx:id="galasButton" layoutX="53.0" layoutY="225.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="119.0" text="Galas" textAlignment="CENTER" wrapText="true" />
       <Button fx:id="inboxButton" layoutX="204.0" layoutY="225.0" mnemonicParsing="false" onMouseClicked="#inboxButtonClicked" prefHeight="110.0" prefWidth="119.0" text="Inbox" textAlignment="CENTER" wrapText="true" />

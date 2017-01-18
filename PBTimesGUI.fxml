@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="344.0" prefWidth="419.0" xmlns="http://javafx.com/javafx/8.0.92" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="344.0" prefWidth="419.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PBTimesSceneController">
    <children>
       <Label fx:id="PBTimesTitle" layoutX="97.0" layoutY="14.0" text="Personal Best Times">
          <font>
@@ -41,7 +40,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="ViewProgressButton" layoutX="59.0" layoutY="289.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="301.0" text="View Progression Graphs" />
-      <Button fx:id="backButton" layoutX="353.0" layoutY="19.0" mnemonicParsing="false" text="Back" />
+      <Button fx:id="ViewProgressButton" layoutX="59.0" layoutY="289.0" mnemonicParsing="false" onMouseClicked="#progressionButtonClicked" prefHeight="25.0" prefWidth="301.0" text="View Progression Graphs" />
+      <Button fx:id="backButton" layoutX="353.0" layoutY="19.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" text="Back" />
    </children>
 </AnchorPane>
