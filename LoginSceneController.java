@@ -22,7 +22,8 @@ public class LoginSceneController
     /* The stage that the scene belongs to, required to catch stage events and test for duplicate controllers. */
     private static Stage stage;     
     private int loginAttempts = 0;
-
+    //This variable will be used later to check how many times the user has tried to login unsuccessfully 
+    
     /* These FXML variables exactly corrispond to the controls that make up the scene, as designed in Scene 
      * Builder. It is important to ensure that these match perfectly or the controls won't be interactive. */
 
@@ -38,7 +39,7 @@ public class LoginSceneController
     {
         System.out.println("Initialising controllers...");
 
-        /* Our JavaFX application should only have one initial scene. The following checks to see
+        /* My  application should only have one initial scene. The following checks to see
          * if a scene already exists (deterimed by if the stage variable has been set) and if so 
          * terminates the whole application with an error code (-1). */        
         if (stage != null)
@@ -72,7 +73,7 @@ public class LoginSceneController
             Application.terminate();
         }
 
-        /* Next, we load the list of fruit from the database and populate the listView. */
+        //This print's to show me that the scene is trying to populate the scene with he items in the javafx file
         System.out.println("Populating scene with items from the database...");        
         //@SuppressWarnings("unchecked")
 
@@ -80,7 +81,7 @@ public class LoginSceneController
         //inboxButton.setGraphic(new ImageView(imageInbox));
     }
 
-    /* In order to catch stage events (the main example being the close (X) button being clicked) we need
+    /* In order to catch stage events (the main example being the close (X) button being clicked) I need
      * to setup event handlers. This happens after the constructor and the initialize methods. Once this is
      * complete, the scene is fully loaded and ready to use. */
     public void prepareStageEvents(Stage stage)
@@ -97,29 +98,31 @@ public class LoginSceneController
             });
     }       
 
-    /* The next three methods are event handlers for clicking on the buttons. 
-     * The names of these methods are set in Scene Builder so they work automatically. */    
+    /* The next method is event handlers for clicking on the login button. 
+     * The name of this method is set in Scene Builder so it works automatically. */
+     
+     //This method is used to check whether or not the strings that the user inputted was correct or incorrect
     @FXML   void loginClicked() throws SQLException
     {
         System.out.println("Login was clicked!");    
 
-        String username = usernameField.getText();
-        String password = passwordField.getText();
+        String username = usernameField.getText(); //stores what the user typed into string variable username
+        String password = passwordField.getText(); //stores what the user types into string variable password
 
         boolean loginSuccess = false;
-        if (loginAttempts != 5){
-            if (username != null || password != null){
-                loginSuccess = Users.isLoginValid(username, password);
-                if (loginSuccess == true){
-                    openNewScene();
-                    Users.setActiveUser(username);
-                    stage.close();
-                }else{
-                    loginAttempts++; 
-                    failedLabel.setVisible(true);
+        if (loginAttempts != 5){ //check's if the user has not reached the maximum login attempts
+            if (username != null || password != null){ //checks if the user has entered something in both username and password fields
+                loginSuccess = Users.isLoginValid(username, password); //calls the method isLoginValid from class Users, this returns a boolean
+                if (loginSuccess == true){ //if the returned boolean value is true then the login must have been valid 
+                    openNewScene(); //calls the method openNewScene
+                    Users.setActiveUser(username); //calls the method setActiveUser of the username who has just successfully logged in to be active
+                    stage.close(); //closes the login scene
+                }else{ // if returned boolean was false 
+                    loginAttempts++; //increments login attemps
+                    failedLabel.setVisible(true); //sets the label failedLabel to be visible
                 }
             }else{
-                System.out.println("No username or password entered");
+                System.out.println("No username or password entered"); 
             }
         }else{
             System.out.println("Too many login attempts. Login disabled");
