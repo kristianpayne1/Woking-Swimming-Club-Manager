@@ -73,12 +73,6 @@ public class LoginSceneController
             Application.terminate();
         }
 
-        //This print's to show me that the scene is trying to populate the scene with he items in the javafx file
-        System.out.println("Populating scene with items from the database...");        
-        //@SuppressWarnings("unchecked")
-
-        //Image imageInbox = new Image (getClass().getResourceAsStream("inbox.png"));
-        //inboxButton.setGraphic(new ImageView(imageInbox));
     }
 
     /* In order to catch stage events (the main example being the close (X) button being clicked) I need
@@ -113,7 +107,7 @@ public class LoginSceneController
         if (loginAttempts != 5){ //check's if the user has not reached the maximum login attempts
             if (username != null || password != null){ //checks if the user has entered something in both username and password fields
                 loginSuccess = Users.isLoginValid(username, password); //calls the method isLoginValid from class Users, this returns a boolean
-                if (loginSuccess == true){ //if the returned boolean value is true then the login must have been valid 
+                if (loginSuccess == true){ //if the returned boolean value is true then the login is valid 
                     openNewScene(); //calls the method openNewScene
                     Users.setActiveUser(username); //calls the method setActiveUser of the username who has just successfully logged in to be active
                     stage.close(); //closes the login scene
@@ -126,31 +120,32 @@ public class LoginSceneController
             }
         }else{
             System.out.println("Too many login attempts. Login disabled");
-            loginButton.setDisable(true);
+            loginButton.setDisable(true); //disables the login button 
         }
     }
 
+    //this methods is called if the the login was successful 
     void openNewScene()
     {
-
-        FXMLLoader loader = new FXMLLoader(Application.class.getResource("HomeGUI.fxml"));
+        
+        FXMLLoader loader = new FXMLLoader(Application.class.getResource("HomeGUI.fxml")); //loads new scene
 
         try
         {
-            Stage stage2 = new Stage();
-            stage2.setTitle("Home");
-            stage2.setScene(new Scene(loader.load()));
-            stage.setResizable(false);
-            stage2.show();           
-            HomeSceneController controller2 = loader.getController();
-            controller2.prepareStageEvents(stage2);
+            Stage stage2 = new Stage(); //constructor for second stage
+            stage2.setTitle("Home"); //sets the title of the scene to Home
+            stage2.setScene(new Scene(loader.load())); //sets new scene as second stage
+            stage.setResizable(false); //disables resizable
+            stage2.show();           //shows new scene
+            HomeSceneController controller2 = loader.getController(); //calls the controller for the home scene
+            controller2.prepareStageEvents(stage2); //calls prepareStageEvents from home scene controller
 
-            controller2.setParent(this);
+            controller2.setParent(this); //sets this stage as the new scene parent
 
         }
         catch (Exception ex)
         {
-            System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage()); //error messages
         }
 
     }
