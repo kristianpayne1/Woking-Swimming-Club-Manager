@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="BackgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/8.0.92" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CompetitionSceneController">
+   <children>
+      <TableView fx:id="CompetitionTable" layoutX="12.0" layoutY="40.0" prefHeight="338.0" prefWidth="229.0">
+        <columns>
+          <TableColumn fx:id="NameColumn" prefWidth="101.0" text="Name" />
+          <TableColumn fx:id="StartdateColumn" prefWidth="82.0" text="Start Date" />
+            <TableColumn fx:id="LevelColumn" prefWidth="45.0" text="Level" />
+        </columns>
+      </TableView>
+      <Label fx:id="TitleLabel" layoutX="303.0" layoutY="9.0" text="Galas">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="NameLabel" layoutX="251.0" layoutY="56.0" prefHeight="17.0" prefWidth="169.0" text="Name:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="StartLabel" layoutX="251.0" layoutY="83.0" prefHeight="17.0" prefWidth="169.0" text="Start Date:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="FinishLabel" layoutX="251.0" layoutY="109.0" prefHeight="17.0" prefWidth="169.0" text="Finish Date:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="LevelLabel" layoutX="251.0" layoutY="135.0" prefHeight="17.0" prefWidth="169.0" text="Level:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="SupervisionLabel" layoutX="251.0" layoutY="160.0" prefHeight="17.0" prefWidth="169.0" text="Supervision:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="AddressLabel" alignment="TOP_LEFT" layoutX="251.0" layoutY="184.0" prefHeight="128.0" prefWidth="169.0" text="Address:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="SignupButton" layoutX="254.0" layoutY="312.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="Sign Up" />
+      <Button fx:id="DeclineButton" layoutX="339.0" layoutY="312.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="Decline" />
+      <Button fx:id="InfoButton" layoutX="251.0" layoutY="348.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="169.0" text="More Pool Information" />
+      <TableView fx:id="SwimmersTable" layoutX="442.0" layoutY="67.0" prefHeight="302.0" prefWidth="169.0">
+         <columns>
+            <TableColumn fx:id="FirstnameColumn" prefWidth="85.0" text="Firstname" />
+            <TableColumn fx:id="LastnameColumn" prefWidth="83.0" text="Lastname" />
+         </columns>
+      </TableView>
+      <Label fx:id="SignedLabel" layoutX="442.0" layoutY="40.0" text="Signed Swimmers:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="BackButton" layoutX="570.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" text="Back" />
+   </children>
+</AnchorPane>
