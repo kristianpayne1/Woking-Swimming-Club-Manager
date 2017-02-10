@@ -173,6 +173,7 @@ public class HomeSceneController
 
     @FXML   void GalasButtonClicked(){
         System.out.println("Galas button clicked");
+        int sceneType = 1;
 
         FXMLLoader loader = new FXMLLoader(Application.class.getResource("GalasGUI.fxml"));
 
@@ -187,7 +188,32 @@ public class HomeSceneController
             controller3.prepareStageEvents(stage3);
 
             controller3.setParent1(this);
+            controller3.loadItem(sceneType);
+        }
+        catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    @FXML   void OpenMeetButtonClicked(){
+        System.out.println("Open meet button clicked");
+        int sceneType = 2;
 
+        FXMLLoader loader = new FXMLLoader(Application.class.getResource("GalasGUI.fxml"));
+
+        try
+        {
+            Stage stage3 = new Stage();
+            stage3.setTitle("Open Meets");
+            stage3.setScene(new Scene(loader.load()));
+            stage.setResizable(false);
+            stage3.show();           
+            CompetitionSceneController controller3 = loader.getController();
+            controller3.prepareStageEvents(stage3);
+
+            controller3.setParent1(this);
+            controller3.loadItem(sceneType);
         }
         catch (Exception ex)
         {

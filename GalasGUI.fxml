@@ -16,7 +16,7 @@
             <TableColumn fx:id="LevelColumn" prefWidth="45.0" text="Level" />
         </columns>
       </TableView>
-      <Label fx:id="TitleLabel" layoutX="303.0" layoutY="9.0" text="Galas">
+      <Label fx:id="TitleLabel" alignment="TOP_CENTER" layoutX="303.0" layoutY="9.0" text="Galas" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

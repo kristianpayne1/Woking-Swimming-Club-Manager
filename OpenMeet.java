@@ -8,45 +8,57 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /* Each table you wish to access in your database requires a model class, like this example: */
-public class Message
+public class OpenMeet
 {
     /* First, map each of the fields (columns) in your table to some public variables. */
 
-    private final SimpleStringProperty Subject;
-    private final SimpleStringProperty From;
-    private final SimpleStringProperty Message;
-    private final SimpleStringProperty Date;
-    private final SimpleIntegerProperty MessageID;
+    private final SimpleIntegerProperty OpenMeetID;
+    private final SimpleStringProperty Name;
+    private final SimpleStringProperty StartDate;
+    private final SimpleStringProperty FinishDate;
+    private final SimpleIntegerProperty Level;
+    private final SimpleStringProperty Supervision;
+    private final SimpleStringProperty Address;
 
     /* Next, prepare a constructor that takes each of the fields as arguements. */
-    public Message(Integer MessageID, String From, String Subject, String Message, String Date)
+    public OpenMeet(Integer OpenMeetID, String Name, String StartDate, String FinishDate, Integer Level, String Supervision, String Address)
     {
-        this.MessageID = new SimpleIntegerProperty(MessageID);
-        this.Subject = new SimpleStringProperty(From);
-        this.From = new SimpleStringProperty(Subject);
-        this.Message = new SimpleStringProperty(Message);
-        this.Date = new SimpleStringProperty(Date);
+        this.OpenMeetID = new SimpleIntegerProperty(OpenMeetID);
+        this.Name = new SimpleStringProperty(Name);
+        this.StartDate = new SimpleStringProperty(StartDate);
+        this.FinishDate = new SimpleStringProperty(FinishDate);
+        this.Level = new SimpleIntegerProperty(Level);
+        this.Supervision = new SimpleStringProperty(Supervision);
+        this.Address = new SimpleStringProperty(Address);
 
     }
 
-    public String getSubject() {
-        return Subject.get();
+    public String getName() {
+        return Name.get();
     }
 
-    public String getFrom() {
-        return From.get();
+    public String getStartDate() {
+        return StartDate.get();
     }
 
-    public String getMessage() {
-        return Message.get();
+    public String getFinishDate() {
+        return FinishDate.get();
+    }
+    
+    public Integer getLevel() {
+        return Level.get();
     }
 
-    public String getDate()  {
-        return Date.get();
+    public String getSupervision()  {
+        return Supervision.get();
     }
 
-    public Integer getMessageID() {
-        return MessageID.get();
+    public String getAddress() {
+        return Address.get();
+    }
+    
+    public Integer getOpenMeetID() {
+        return OpenMeetID.get();
     }
 
     public static String stringDate(java.sql.Date CreateDate) 
@@ -55,18 +67,18 @@ public class Message
         return date;
     }
 
-    public static void deleteById(int MessageID)
+    /*public static void declineById(int OpenMeetID)
     {
         try 
         {
 
-            PreparedStatement statement = Application.database.newStatement("DELETE FROM Message WHERE MessageID = ?");             
-            statement.setInt(1, MessageID);
+            PreparedStatement statement = Application.database.newStatement("DELETE FROM Galas WHERE GalaID = ?");             
+            statement.setInt(1, GalaID);
 
             if (statement != null)
             {
                 Application.database.executeUpdate(statement);
-                System.out.println("Message deleted");
+                System.out.println("Gala declined deleted");
             }
         }
         catch (SQLException resultsexception)
@@ -85,7 +97,7 @@ public class Message
     /* Different models will require different read and write methods. Here is an example 'loadAll' method 
      * which is passed the target list object to populate. */
 
-    public static void sendMessage(String to, String subject, String message) throws SQLException
+    /*public static void signUp(String to, String subject, String message) throws SQLException
     {
         java.util.Date utilDate = new java.util.Date();
         java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
@@ -113,5 +125,6 @@ public class Message
             statement.close();
         }
     }
+    */
 
 }
