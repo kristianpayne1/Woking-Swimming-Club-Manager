@@ -15,7 +15,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -38,15 +37,18 @@ public class CompetitionSceneController
     @FXML private Label SupervisionLabel;
     @FXML private Label AddressLabel;
     @FXML private Label SignedLabel;
-    @FXML private TableView <OpenMeet> CompetitionTable;
-    @FXML private TableView SwimmersTable;
-    @FXML private TableColumn <OpenMeet, String> NameColumn;
-    @FXML private TableColumn <OpenMeet, String> StartdateColumn;
-    @FXML private TableColumn <OpenMeet, Integer> LevelColumn;
-    @FXML private TableColumn FirstnameColumn;
-    @FXML private TableColumn LastnameColumn;
+    @FXML private TableView <Competition> CompetitionTable;
+    @FXML private TableView <SignedSwimmers> SignedSwimmersTable;
+    @FXML private TableColumn <Competition, String> NameColumn;
+    @FXML private TableColumn <Competition, String> StartdateColumn;
+    @FXML private TableColumn <Competition, Integer> LevelColumn;
+    @FXML private TableColumn <SignedSwimmers, String> FirstNameColumn;
+    @FXML private TableColumn <SignedSwimmers, String> LastNameColumn;
 
-    public ObservableList<OpenMeet> list = FXCollections.observableArrayList();
+    public ObservableList<Competition> list = FXCollections.observableArrayList();
+    public ObservableList<SignedSwimmers> list1 = FXCollections.observableArrayList();
+    public int sceneTypeOpenMeet = 0;
+
     public CompetitionSceneController()
     {
         System.out.println("Initialising controllers...");
@@ -84,12 +86,11 @@ public class CompetitionSceneController
             assert AddressLabel != null :"Can't find address label";
             assert SignedLabel != null :"Can't find signed label";
             assert CompetitionTable != null :"Can't find competition label";
-            assert SwimmersTable != null :"Can't find swimmers label";
+            assert SignedSwimmersTable != null :"Can't find swimmers label";
             assert NameColumn != null :"Can't find name column";
             assert StartdateColumn != null :"Can't find start date column";
             assert LevelColumn != null :"Can't find level column";
-            assert FirstnameColumn != null :"Can't find firstname column";
-            assert LastnameColumn != null :"Can't find last name column";
+
         }
         catch (AssertionError ae)
         {
@@ -99,41 +100,46 @@ public class CompetitionSceneController
 
         System.out.println("Populating scene with items from the database...");       
 
-        NameColumn.setCellValueFactory(new PropertyValueFactory<OpenMeet, String>("Name"));
-        StartdateColumn.setCellValueFactory(new PropertyValueFactory<OpenMeet, String>("StartDate"));
-        LevelColumn.setCellValueFactory(new PropertyValueFactory<OpenMeet, Integer>("Level"));
+        NameColumn.setCellValueFactory(new PropertyValueFactory<Competition, String>("Name"));
+        StartdateColumn.setCellValueFactory(new PropertyValueFactory<Competition, String>("StartDate"));
+        LevelColumn.setCellValueFactory(new PropertyValueFactory<Competition, Integer>("Level"));
+
+        FirstNameColumn.setCellValueFactory(new PropertyValueFactory<SignedSwimmers, String>("Firstname"));
+        LastNameColumn.setCellValueFactory(new PropertyValueFactory<SignedSwimmers, String>("Lastname"));
 
         list.clear();
+        list1.clear();
     }
 
     public void setParent1(HomeSceneController parent)
     {
         this.parent = parent;
     }
-    
-    public  void readAll() throws SQLException
+
+    public  void readAllOpenMeets() throws SQLException
     {
         list.clear();       // Clear the target list first.
 
         /* Create a new prepared statement object with the desired SQL query. */
-        PreparedStatement statement = Application.database.newStatement("SELECT OpenMeetID, Name, StartDate, FinishDate, Level, Supervision, Address FROM Message WHERE RecieverID = ?"); 
+        PreparedStatement statement = Application.database.newStatement("SELECT OpenMeetID, Name, StartDate, FinishDate, Level, CoachID, Address FROM OpenMeet"); 
 
         if (statement != null)      // Assuming the statement correctly initated...
         {
-            statement.setInt(1, Users.getActiveUserID());
             ResultSet results = Application.database.runQuery(statement);       // ...run the query!
 
             if (results != null)        // If some results are returned from the query...
             {
                 try {                               // ...add each one to the list.
                     while (results.next()) {                                               
-                        list.add( new OpenMeet(
-                                results.getInt("MessageID"),
-                                results.getString("Subject"), 
-                                Users.getUsername(results.getInt("CreaterID")), 
-                                results.getString("MessageBody"),
-                                Message.stringDate(results.getDate("CreateDate"))));
-                        tableView.setItems(list);
+                        list.add( new Competition(
+                                results.getInt("OpenMeetID"),
+                                results.getString("Name"), 
+                                Application.stringDate(results.getDate("StartDate")), 
+                                Application.stringDate(results.getDate("FinishDate")),
+                                results.getInt("Level"),
+                                Users.getCoachName(results.getInt("CoachID")),
+                                results.getString("Address")));
+                        CompetitionTable.setItems(list);
                     }
                 }
                 catch (SQLException resultsexception)       // Catch any error processing the results.
@@ -145,6 +151,61 @@ public class CompetitionSceneController
 
     }
 
+    public  void readAllOpenMeetSignedSwimmers(int OpenMeetID) throws SQLException
+    {
+        list1.clear();       // Clear the target list first.
+
+        /* Create a new prepared statement object with the desired SQL query. */
+        PreparedStatement statement = Application.database.newStatement("SELECT Firstname, Lastname FROM Swimmers INNER JOIN SignedUpOpenMeetSwimmers ON Swimmers.SwimmerID = SignedUpOpenMeetSwimmers.SwimmerID WHERE SignedUpOpenMeetSwimmers.OpenMeetID = ?;"); 
+
+        if (statement != null)      // Assuming the statement correctly initated...
+        {
+            statement.setInt(1, OpenMeetID);
+            ResultSet results = Application.database.runQuery(statement);       // ...run the query!
+
+            if (results != null)        // If some results are returned from the query...
+            {
+                try {                               // ...add each one to the list.
+                    while (results.next()) { 
+                        list1.add( new SignedSwimmers(
+                                results.getString("Firstname"),
+                                results.getString("Lastname")));
+                        SignedSwimmersTable.setItems(list1);
+                    }
+                }
+                catch (SQLException resultsexception)       // Catch any error processing the results.
+                {
+                    System.out.println("Database result processing error: " + resultsexception.getMessage());
+                }
+            }
+        }
+
+    }
+
+    @FXML   void tableViewClicked() throws SQLException
+    {
+        int OpenMeetID = 0;
+        Competition selectedItem = (Competition) CompetitionTable.getSelectionModel().getSelectedItem();
+
+        if (selectedItem == null)
+        {
+            System.out.println("Nothing selected!");
+        }
+        else
+        {   
+            NameLabel.setText("Name: " + selectedItem.getName());
+            StartLabel.setText("StartDate: " + selectedItem.getStartDate());
+            FinishLabel.setText("FinishDate: " + selectedItem.getFinishDate());
+            LevelLabel.setText("Level: " + selectedItem.getLevel());
+            SupervisionLabel.setText("Supervision: " + selectedItem.getSupervision());
+            AddressLabel.setText("Address: " + selectedItem.getAddress());
+
+            System.out.println(selectedItem.getName());
+            OpenMeetID = selectedItem.getCompetitionID();
+            readAllOpenMeetSignedSwimmers(OpenMeetID);
+        }
+    }
+
     @FXML void backButtonClicked()
     {
         System.out.println("Back button clicked");
@@ -154,8 +215,10 @@ public class CompetitionSceneController
     public void loadItem(int sceneType) throws SQLException
     {      
         if (sceneType == 2){
+            sceneTypeOpenMeet = sceneType;
             TitleLabel.setText("Open Meets");
             DeclineButton.setDisable(true);
+            readAllOpenMeets();
         }
     }
 }

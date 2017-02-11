@@ -57,5 +57,11 @@ public class Application
         if (database != null) database.disconnect();    // Close the connection to the database (if it exists!)
         System.exit(0);                                 // Finally, terminate the entire application.
     }
+    
+    public static String stringDate(java.sql.Date CreateDate) 
+    {
+        String date = CreateDate.toString();
+        return date;
+    }
 
 }

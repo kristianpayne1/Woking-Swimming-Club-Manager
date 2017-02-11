@@ -118,7 +118,7 @@ public class InboxSceneController
                                 results.getString("Subject"), 
                                 Users.getUsername(results.getInt("CreaterID")), 
                                 results.getString("MessageBody"),
-                                Message.stringDate(results.getDate("CreateDate"))));
+                                Application.stringDate(results.getDate("CreateDate"))));
                         tableView.setItems(list);
                     }
                 }

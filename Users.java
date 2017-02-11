@@ -158,6 +158,37 @@ public class Users
         return username;
     }
 
+    public static String getCoachName(Integer CoachID)
+    {
+        String firstname= null;
+        String lastname =  null;
+        String fullname = null;
+        PreparedStatement statement3 = Application.database.newStatement("SELECT FirstName, LastName FROM Coaches WHERE CoachID = ?"); 
+        try{
+            if (statement3 != null)
+            {
+                statement3.setInt(1, CoachID);
+                ResultSet results = Application.database.runQuery(statement3);
+
+                if (results != null)
+                {
+                    while(results.next()) {
+                        firstname = new String (results.getString("FirstName"));
+                        lastname = new String (results.getString("LastName"));
+                    }
+                }
+            }
+        }
+        catch (SQLException resultsexception)
+        {
+            System.out.println("Database result processing error: " + resultsexception.getMessage());
+        }
+        
+        fullname = firstname + " " + lastname;
+        System.out.print(fullname);
+        return fullname;
+    }
+
     public static boolean isLoginValid(String username, String password) throws SQLException
     {
         boolean loginGranted = false;
