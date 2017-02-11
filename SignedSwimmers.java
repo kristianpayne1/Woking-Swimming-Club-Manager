@@ -22,12 +22,12 @@ public class SignedSwimmers
         this.Lastname = new SimpleStringProperty(Lastname);
     }
 
-    public String getFirstName() {
-        return Firstname.get();
+    public String getFirstname() {
+        return Firstname.getValue();
     }
     
-     public String getLastName() {
-        return Lastname.get();
+     public String getLastname() {
+        return Lastname.getValue();
     }
 
 

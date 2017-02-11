@@ -21,39 +21,38 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="NameLabel" layoutX="251.0" layoutY="56.0" prefHeight="17.0" prefWidth="169.0" text="Name:">
+      <Label fx:id="NameLabel" layoutX="251.0" layoutY="56.0" prefHeight="17.0" prefWidth="169.0" text="Name:" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="StartLabel" layoutX="251.0" layoutY="83.0" prefHeight="17.0" prefWidth="169.0" text="Start Date:">
+      <Label fx:id="StartLabel" layoutX="251.0" layoutY="83.0" prefHeight="17.0" prefWidth="169.0" text="Start Date:" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="FinishLabel" layoutX="251.0" layoutY="109.0" prefHeight="17.0" prefWidth="169.0" text="Finish Date:">
+      <Label fx:id="FinishLabel" layoutX="251.0" layoutY="109.0" prefHeight="17.0" prefWidth="169.0" text="Finish Date:" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="LevelLabel" layoutX="251.0" layoutY="135.0" prefHeight="17.0" prefWidth="169.0" text="Level:">
+      <Label fx:id="LevelLabel" layoutX="251.0" layoutY="135.0" prefHeight="17.0" prefWidth="169.0" text="Level:" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="SupervisionLabel" layoutX="251.0" layoutY="160.0" prefHeight="17.0" prefWidth="169.0" text="Supervision:">
+      <Label fx:id="SupervisionLabel" layoutX="251.0" layoutY="160.0" prefHeight="17.0" prefWidth="169.0" text="Supervision:" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="AddressLabel" alignment="TOP_LEFT" layoutX="251.0" layoutY="184.0" prefHeight="128.0" prefWidth="169.0" text="Address:">
+      <Label fx:id="AddressLabel" alignment="TOP_LEFT" layoutX="251.0" layoutY="184.0" prefHeight="128.0" prefWidth="169.0" text="Address:" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button fx:id="SignupButton" layoutX="254.0" layoutY="312.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="Sign Up" />
-      <Button fx:id="DeclineButton" layoutX="339.0" layoutY="312.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="Decline" />
-      <Button fx:id="InfoButton" layoutX="251.0" layoutY="348.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="169.0" text="More Pool Information" />
+      <Button fx:id="SignupButton" layoutX="251.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#signUpButtonClicked" prefHeight="25.0" prefWidth="169.0" text="Sign Up" />
+      <Button fx:id="InfoButton" layoutX="251.0" layoutY="348.0" mnemonicParsing="false" onMouseClicked="#infoButtonClicked" prefHeight="25.0" prefWidth="169.0" text="More Pool Information" />
       <Label fx:id="SignedLabel" layoutX="442.0" layoutY="40.0" text="Signed Swimmers:">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -63,7 +62,8 @@
       <TableView fx:id="SignedSwimmersTable" layoutX="429.0" layoutY="60.0" prefHeight="316.0" prefWidth="190.0">
         <columns>
           <TableColumn fx:id="FirstNameColumn" prefWidth="102.0" text="Firstname" />
-            <TableColumn fx:id="LastNameColumn" prefWidth="87.0" text="Lastname" />
+            <TableColumn fx:id="LastNameColumn" prefWidth="87.0" text="Lastname">
+			</TableColumn>
         </columns>
       </TableView>
    </children>

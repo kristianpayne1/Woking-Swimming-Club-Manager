@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.event.EventHandler;
 import javafx.stage.WindowEvent;
 import java.util.List;
+import java.util.ArrayList;
 
 import javafx.fxml.Initializable;
 import java.util.ResourceBundle;
@@ -27,7 +28,6 @@ public class CompetitionSceneController
 
     @FXML private Button BackButton;
     @FXML private Button SignupButton;
-    @FXML private Button DeclineButton;
     @FXML private Button InfoButton;
     @FXML private Label TitleLabel;
     @FXML private Label NameLabel;
@@ -48,6 +48,7 @@ public class CompetitionSceneController
     public ObservableList<Competition> list = FXCollections.observableArrayList();
     public ObservableList<SignedSwimmers> list1 = FXCollections.observableArrayList();
     public int sceneTypeOpenMeet = 0;
+    public List signedUpCompetitions = new ArrayList();
 
     public CompetitionSceneController()
     {
@@ -75,7 +76,6 @@ public class CompetitionSceneController
         {
             assert BackButton != null: "can't find back button";
             assert SignupButton != null :"Can't find Sign up button";
-            assert DeclineButton != null :"Can't find decline button";
             assert InfoButton != null :"Can't find info button";
             assert TitleLabel != null :"Can't find title label";
             assert NameLabel != null :"Can't find name label";
@@ -151,6 +151,72 @@ public class CompetitionSceneController
 
     }
 
+    public  void readAllGalas() throws SQLException
+    {
+        list.clear();       // Clear the target list first.
+
+        /* Create a new prepared statement object with the desired SQL query. */
+        PreparedStatement statement = Application.database.newStatement("SELECT GalaID, Name, StartDate, FinishDate, Level, CoachID, Address FROM Galas"); 
+
+        if (statement != null)      // Assuming the statement correctly initated...
+        {
+            ResultSet results = Application.database.runQuery(statement);       // ...run the query!
+
+            if (results != null)        // If some results are returned from the query...
+            {
+                try {                               // ...add each one to the list.
+                    while (results.next()) {                                               
+                        list.add( new Competition(
+                                results.getInt("GalaID"),
+                                results.getString("Name"), 
+                                Application.stringDate(results.getDate("StartDate")), 
+                                Application.stringDate(results.getDate("FinishDate")),
+                                results.getInt("Level"),
+                                Users.getCoachName(results.getInt("CoachID")),
+                                results.getString("Address")));
+                        CompetitionTable.setItems(list);
+                    }
+                }
+                catch (SQLException resultsexception)       // Catch any error processing the results.
+                {
+                    System.out.println("Database result processing error: " + resultsexception.getMessage());
+                }
+            }
+        }
+
+    }
+
+    public  void readAllGalaSignedSwimmers(int GalaID) throws SQLException
+    {
+        list1.clear();       // Clear the target list first.
+
+        /* Create a new prepared statement object with the desired SQL query. */
+        PreparedStatement statement = Application.database.newStatement("SELECT Firstname, Lastname FROM Swimmers INNER JOIN SignedUpGalaSwimmers ON Swimmers.SwimmerID = SignedUpGalaSwimmers.SwimmerID WHERE SignedUpGalaSwimmers.GalaID = ?;"); 
+
+        if (statement != null)      // Assuming the statement correctly initated...
+        {
+            statement.setInt(1, GalaID);
+            ResultSet results = Application.database.runQuery(statement);       // ...run the query!
+
+            if (results != null)        // If some results are returned from the query...
+            {
+                try {                               // ...add each one to the list.
+                    while (results.next()) { 
+                        list1.add( new SignedSwimmers(
+                                results.getString("Firstname"),
+                                results.getString("Lastname")));
+                        SignedSwimmersTable.setItems(list1);
+                    }
+                }
+                catch (SQLException resultsexception)       // Catch any error processing the results.
+                {
+                    System.out.println("Database result processing error: " + resultsexception.getMessage());
+                }
+            }
+        }
+
+    }
+
     public  void readAllOpenMeetSignedSwimmers(int OpenMeetID) throws SQLException
     {
         list1.clear();       // Clear the target list first.
@@ -184,25 +250,60 @@ public class CompetitionSceneController
 
     @FXML   void tableViewClicked() throws SQLException
     {
-        int OpenMeetID = 0;
-        Competition selectedItem = (Competition) CompetitionTable.getSelectionModel().getSelectedItem();
+        if (sceneTypeOpenMeet == 2){
+            int OpenMeetID = 0;
+            Competition selectedItem = (Competition) CompetitionTable.getSelectionModel().getSelectedItem();
 
-        if (selectedItem == null)
-        {
-            System.out.println("Nothing selected!");
-        }
-        else
-        {   
-            NameLabel.setText("Name: " + selectedItem.getName());
-            StartLabel.setText("StartDate: " + selectedItem.getStartDate());
-            FinishLabel.setText("FinishDate: " + selectedItem.getFinishDate());
-            LevelLabel.setText("Level: " + selectedItem.getLevel());
-            SupervisionLabel.setText("Supervision: " + selectedItem.getSupervision());
-            AddressLabel.setText("Address: " + selectedItem.getAddress());
+            if (selectedItem == null)
+            {
+                System.out.println("Nothing selected!");
+            }
+            else
+            {   
+                NameLabel.setText("Name: " + selectedItem.getName());
+                StartLabel.setText("StartDate: " + selectedItem.getStartDate());
+                FinishLabel.setText("FinishDate: " + selectedItem.getFinishDate());
+                LevelLabel.setText("Level: " + selectedItem.getLevel());
+                SupervisionLabel.setText("Supervision: " + selectedItem.getSupervision());
+                AddressLabel.setText("Address: " + selectedItem.getAddress());
 
-            System.out.println(selectedItem.getName());
-            OpenMeetID = selectedItem.getCompetitionID();
-            readAllOpenMeetSignedSwimmers(OpenMeetID);
+                System.out.println(selectedItem.getName());
+                OpenMeetID = selectedItem.getCompetitionID();
+                readAllOpenMeetSignedSwimmers(OpenMeetID);
+
+                if (signedUpCompetitions.contains(OpenMeetID) == true){
+                    SignupButton.setDisable(true);
+                }else{
+                    SignupButton.setDisable(false);
+                }
+            }
+        }else{
+            int GalaID = 0;
+            Competition selectedItem = (Competition) CompetitionTable.getSelectionModel().getSelectedItem();
+
+            if (selectedItem == null)
+            {
+                System.out.println("Nothing selected!");
+            }
+            else
+            {   
+                NameLabel.setText("Name: " + selectedItem.getName());
+                StartLabel.setText("StartDate: " + selectedItem.getStartDate());
+                FinishLabel.setText("FinishDate: " + selectedItem.getFinishDate());
+                LevelLabel.setText("Level: " + selectedItem.getLevel());
+                SupervisionLabel.setText("Supervision: " + selectedItem.getSupervision());
+                AddressLabel.setText("Address: " + selectedItem.getAddress());
+
+                System.out.println(selectedItem.getName());
+                GalaID = selectedItem.getCompetitionID();
+                readAllGalaSignedSwimmers(GalaID);
+
+                if (signedUpCompetitions.contains(GalaID) == true){
+                    SignupButton.setDisable(true);
+                }else{
+                    SignupButton.setDisable(false);
+                }
+            }
         }
     }
 
@@ -217,9 +318,79 @@ public class CompetitionSceneController
         if (sceneType == 2){
             sceneTypeOpenMeet = sceneType;
             TitleLabel.setText("Open Meets");
-            DeclineButton.setDisable(true);
             readAllOpenMeets();
+        }else{
+            readAllGalas();
         }
     }
+
+    @FXML void signUpButtonClicked() throws SQLException
+    {
+        System.out.println("Sign up button clicked");
+        Competition selectedItem = (Competition) CompetitionTable.getSelectionModel().getSelectedItem();
+
+        if (selectedItem == null)
+        {
+            System.out.println("Nothing selected!");
+        }
+        else
+        {   
+            if (sceneTypeOpenMeet == 2)
+            {
+                int OpenMeetID = selectedItem.getCompetitionID();
+                PreparedStatement statement = Application.database.newStatement("INSERT INTO SignedUpOpenMeetSwimmers (OpenMeetID, SwimmerID) VALUES (?, ?)");
+
+                try
+                {
+                    statement.setInt(1, OpenMeetID);
+                    statement.setInt(2, Users.getActiveUserID());
+
+                }
+                catch(SQLException e)
+                {
+                    System.out.println(e);
+                    System.out.println("Failed to insert to Message table");
+                }
+                finally
+                {   
+                    statement.executeUpdate();
+                    statement.close();
+                    signedUpCompetitions.add(OpenMeetID);
+                    SignupButton.setDisable(true);
+                    readAllOpenMeetSignedSwimmers(OpenMeetID);
+                }
+            }else{
+                int GalaID = selectedItem.getCompetitionID();
+                PreparedStatement statement = Application.database.newStatement("INSERT INTO SignedUpGalaSwimmers (GalaID, SwimmerID) VALUES (?, ?)");
+
+                try
+                {
+                    statement.setInt(1, GalaID);
+                    statement.setInt(2, Users.getActiveUserID());
+
+                }
+                catch(SQLException e)
+                {
+                    System.out.println(e);
+                    System.out.println("Failed to insert to Message table");
+                }
+                finally
+                {   
+                    statement.executeUpdate();
+                    statement.close();
+                    signedUpCompetitions.add(GalaID);
+                    SignupButton.setDisable(true);
+                    readAllGalaSignedSwimmers(GalaID);
+                }
+            }
+        }
+    }
+
+    @FXML void infoButtonClicked()
+    {
+        System.out.println("More info button clicked");
+
+    }
+
 }
 
