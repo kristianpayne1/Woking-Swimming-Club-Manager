@@ -71,7 +71,10 @@ public class HomeSceneController
             Application.terminate();
         }
 
-        System.out.println("Populating scene with items from the database...");       
+        System.out.println("Populating scene with items from the database...");  
+        
+        int CreaterID = Users.getActiveUserID();
+        ActiveUserLabel.setText("Logged in as: " + Users.getUsername(CreaterID));
 
     }
 
