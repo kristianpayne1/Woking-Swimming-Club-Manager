@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 import javafx.event.EventHandler;
 import javafx.stage.WindowEvent;
 import java.sql.SQLException;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class HomeSceneController 
 {
@@ -73,8 +75,26 @@ public class HomeSceneController
 
         System.out.println("Populating scene with items from the database...");  
         
-        int CreaterID = Users.getActiveUserID();
-        ActiveUserLabel.setText("Logged in as: " + Users.getUsername(CreaterID));
+        //int CreaterID = Users.getActiveUserID();
+        //ActiveUserLabel.setText("Logged in as: " + Users.getUsername(CreaterID));
+        
+        Image imageTimetable = new Image (getClass().getResourceAsStream("Images/timetable.png"));
+        timetableButton.setGraphic(new ImageView(imageTimetable));
+        
+        Image imagePb = new Image (getClass().getResourceAsStream("Images/pb.png"));
+        PBButton.setGraphic(new ImageView(imagePb));
+        
+        Image imageOpenMeet = new Image (getClass().getResourceAsStream("Images/openmeets.png"));
+        openMeetButton.setGraphic(new ImageView(imageOpenMeet));
+        
+        Image imageGalas = new Image (getClass().getResourceAsStream("Images/galas.png"));
+        galasButton.setGraphic(new ImageView(imageGalas));
+        
+        Image imageInbox = new Image (getClass().getResourceAsStream("Images/inbox.png"));
+        inboxButton.setGraphic(new ImageView(imageInbox));
+        
+        Image imageExit = new Image (getClass().getResourceAsStream("Images/logoff.png"));
+        exitButton.setGraphic(new ImageView(imageExit));
 
     }
 
