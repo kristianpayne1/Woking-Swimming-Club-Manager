@@ -8,7 +8,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /* Each table you wish to access in your database requires a model class, like this example: */
-public class PBTimes50m
+public class PBTimes100m
 {
     /* First, map each of the fields (columns) in your table to some public variables. */
 
@@ -19,7 +19,7 @@ public class PBTimes50m
     private final SimpleStringProperty Fly;
 
     /* Next, prepare a constructor that takes each of the fields as arguements. */
-    public PBTimes50m(Integer PBID, String Free, String Back, String Breast, String Fly)
+    public PBTimes100m(Integer PBID, String Free, String Back, String Breast, String Fly)
     {
         this.PBID = new SimpleIntegerProperty(PBID);
         this.Free = new SimpleStringProperty(Free);
@@ -49,4 +49,3 @@ public class PBTimes50m
     }
 
 }
-
