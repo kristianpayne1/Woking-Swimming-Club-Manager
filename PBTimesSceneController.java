@@ -109,10 +109,11 @@ public class PBTimesSceneController
         list50m.clear();       // Clear the target list first.
 
         /* Create a new prepared statement object with the desired SQL query. */
-        PreparedStatement statement = Application.database.newStatement("SELECT PBID, Free50m, Back50m, Breast50m, Fly50m FROM PBTimes"); 
+        PreparedStatement statement = Application.database.newStatement("SELECT PBTimes.PBID, Free50m, Back50m, Breast50m, Fly50m FROM PBTimes INNER JOIN Swimmers ON Swimmers.PBID = PBTimes.PBID WHERE Swimmers.SwimmerID = ?"); 
 
         if (statement != null)      // Assuming the statement correctly initated...
         {
+            statement.setInt(1, Users.getSwimmerID(Users.getActiveUserID()));
             ResultSet results = Application.database.runQuery(statement);       // ...run the query!
 
             if (results != null)        // If some results are returned from the query...
@@ -142,10 +143,11 @@ public class PBTimesSceneController
         list100m.clear();       // Clear the target list first.
 
         /* Create a new prepared statement object with the desired SQL query. */
-        PreparedStatement statement = Application.database.newStatement("SELECT PBID, Free100m, Back100m, Breast100m, Fly100m FROM PBTimes"); 
+        PreparedStatement statement = Application.database.newStatement("SELECT PBTimes.PBID, Free100m, Back100m, Breast100m, Fly100m FROM PBTimes INNER JOIN Swimmers ON Swimmers.PBID = PBTimes.PBID WHERE Swimmers.SwimmerID = ?"); 
 
         if (statement != null)      // Assuming the statement correctly initated...
         {
+            statement.setInt(1, Users.getSwimmerID(Users.getActiveUserID()));
             ResultSet results = Application.database.runQuery(statement);       // ...run the query!
 
             if (results != null)        // If some results are returned from the query...
@@ -202,8 +204,8 @@ public class PBTimesSceneController
 
     public static String convertToMin(int millis){
         String time = String.format("%02d:%02d.%d", TimeUnit.MILLISECONDS.toMinutes(millis), 
-        TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)),
-        millis - TimeUnit.SECONDS.toMillis(TimeUnit.MILLISECONDS.toSeconds(millis)));
+                TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)),
+                millis - TimeUnit.SECONDS.toMillis(TimeUnit.MILLISECONDS.toSeconds(millis)));
 
         return time;
     }

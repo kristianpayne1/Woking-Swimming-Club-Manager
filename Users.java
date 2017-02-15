@@ -135,6 +135,29 @@ public class Users
         return userID;
     }
 
+    public static Integer getSwimmerID(int userID){
+        int swimmerID = 0;
+        PreparedStatement statement2 = Application.database.newStatement("SELECT SwimmerID FROM Swimmers WHERE UserID = ?"); 
+        try{
+            if (statement2 != null)
+            {
+                statement2.setInt(1, userID);
+                ResultSet results = Application.database.runQuery(statement2);
+
+                if (results != null)
+                {
+                    swimmerID = new Integer (results.getInt("SwimmerID"));
+                }
+            }
+        }
+        catch (SQLException resultsexception)
+        {
+            System.out.println("Database result processing error: " + resultsexception.getMessage());
+            System.out.println("No active users???");
+        }
+        return swimmerID;
+    }
+
     public static String getUsername(Integer CreaterID)
     {
         String username = null;
@@ -183,12 +206,12 @@ public class Users
         {
             System.out.println("Database result processing error: " + resultsexception.getMessage());
         }
-        
+
         fullname = firstname + " " + lastname;
         System.out.print(fullname);
         return fullname;
     }
-   
+
     public static boolean isLoginValid(String username, String password) throws SQLException
     {
         boolean loginGranted = false;
