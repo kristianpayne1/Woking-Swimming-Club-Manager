@@ -31,6 +31,15 @@ public class ProgressionGraphSceneController
 
     public int buttonCombo = 0;
 
+    public XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
+    public XYChart.Series<String, Number> series2 = new XYChart.Series<String, Number>();
+    public XYChart.Series<String, Number> series3 = new XYChart.Series<String, Number>();
+    public XYChart.Series<String, Number> series4 = new XYChart.Series<String, Number>();
+    public XYChart.Series<String, Number> series5 = new XYChart.Series<String, Number>();
+    public XYChart.Series<String, Number> series6 = new XYChart.Series<String, Number>();
+    public XYChart.Series<String, Number> series7 = new XYChart.Series<String, Number>();
+    public XYChart.Series<String, Number> series8 = new XYChart.Series<String, Number>();
+
     public ProgressionGraphSceneController()
     {
         System.out.println("Initialising controllers...");
@@ -70,7 +79,7 @@ public class ProgressionGraphSceneController
             Application.terminate();
         }
 
-        System.out.println("Populating scene with items from the database...");       
+        System.out.println("Populating scene with items from the database..."); 
 
     }
 
@@ -79,15 +88,15 @@ public class ProgressionGraphSceneController
         this.parent = parent2;
     }
 
-    public void loadProgressionGraph(int buttonCase)
+    public void loadProgressionGraph(int buttonCase) throws SQLException
     {
 
         if (buttonCase == 0){
-            PreparedStatement statement = Application.database.newStatement("SELECT PrevFree50m.PB1, PrevFree50m.PB1Date, PrevFree50m.PB2, PrevFree50m.PB2Date, PrevFree50m.PB3, PrevFree50m.PB3Date, PrevFree50m.PB4, PrevFree50m.PB4Date, PBTimes.Free50m, PBTimes.Free50mDate FROM PrevFree50m INNER JOIN PBTimes ON PBTimes.PrevFree50mID = PrevFree50m.PrevFreeID WHERE PBTimes.PBID = 1;"); 
-            XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
+            PreparedStatement statement = Application.database.newStatement("SELECT PrevFree50m.PB1, PrevFree50m.PB1Date, PrevFree50m.PB2, PrevFree50m.PB2Date, PrevFree50m.PB3, PrevFree50m.PB3Date, PrevFree50m.PB4, PrevFree50m.PB4Date, PBTimes.Free50m, PBTimes.Free50mDate FROM PrevFree50m INNER JOIN PBTimes ON PBTimes.PrevFree50mID = PrevFree50m.PrevFreeID WHERE PBTimes.PBID = ?;"); 
+
             if (statement != null)      // Assuming the statement correctly initated...
             {
-                //statement.setInt(1, Users.getSwimmerID(Users.getActiveUserID()));
+                statement.setInt(1, Users.getPBID(Users.getSwimmerID(Users.getActiveUserID())));
                 ResultSet results = Application.database.runQuery(statement);       // ...run the query!
 
                 if (results != null)        // If some results are returned from the query...
@@ -109,11 +118,11 @@ public class ProgressionGraphSceneController
                 }
             }
         }else if(buttonCase == 1){
-            PreparedStatement statement = Application.database.newStatement("SELECT PrevBack50m.PB1, PrevBack50m.PB1Date, PrevBack50m.PB2, PrevBack50m.PB2Date, PrevBack50m.PB3, PrevBack50m.PB3Date, PrevBack50m.PB4, PrevBack50m.PB4Date, PBTimes.Back50m, PBTimes.Back50mDate FROM PrevBack50m INNER JOIN PBTimes ON PBTimes.PrevBack50mID = PrevBack50m.PrevBackID WHERE PBTimes.PBID = 1;"); 
-            XYChart.Series<String, Number> series2 = new XYChart.Series<String, Number>();
+            PreparedStatement statement = Application.database.newStatement("SELECT PrevBack50m.PB1, PrevBack50m.PB1Date, PrevBack50m.PB2, PrevBack50m.PB2Date, PrevBack50m.PB3, PrevBack50m.PB3Date, PrevBack50m.PB4, PrevBack50m.PB4Date, PBTimes.Back50m, PBTimes.Back50mDate FROM PrevBack50m INNER JOIN PBTimes ON PBTimes.PrevBack50mID = PrevBack50m.PrevBackID WHERE PBTimes.PBID = ?;"); 
+
             if (statement != null)      // Assuming the statement correctly initated...
             {
-                //statement.setInt(1, Users.getSwimmerID(Users.getActiveUserID()));
+                statement.setInt(1, Users.getPBID(Users.getSwimmerID(Users.getActiveUserID())));
                 ResultSet results = Application.database.runQuery(statement);       // ...run the query!
 
                 if (results != null)        // If some results are returned from the query...
@@ -135,11 +144,11 @@ public class ProgressionGraphSceneController
                 }
             }
         }else if(buttonCase == 2){
-            PreparedStatement statement = Application.database.newStatement("SELECT PrevBreast50m.PB1, PrevBreast50m.PB1Date, PrevBreast50m.PB2, PrevBreast50m.PB2Date, PrevBreast50m.PB3, PrevBreast50m.PB3Date, PrevBreast50m.PB4, PrevBreast50m.PB4Date, PBTimes.Breast50m, PBTimes.Breast50mDate FROM PrevBreast50m INNER JOIN PBTimes ON PBTimes.PrevBreast50mID = PrevBreast50m.PrevBreastID WHERE PBTimes.PBID = 1;"); 
-            XYChart.Series<String, Number> series3 = new XYChart.Series<String, Number>();
+            PreparedStatement statement = Application.database.newStatement("SELECT PrevBreast50m.PB1, PrevBreast50m.PB1Date, PrevBreast50m.PB2, PrevBreast50m.PB2Date, PrevBreast50m.PB3, PrevBreast50m.PB3Date, PrevBreast50m.PB4, PrevBreast50m.PB4Date, PBTimes.Breast50m, PBTimes.Breast50mDate FROM PrevBreast50m INNER JOIN PBTimes ON PBTimes.PrevBreast50mID = PrevBreast50m.PrevBreastID WHERE PBTimes.PBID = ?;"); 
+
             if (statement != null)      // Assuming the statement correctly initated...
             {
-                //statement.setInt(1, Users.getSwimmerID(Users.getActiveUserID()));
+                statement.setInt(1, Users.getPBID(Users.getSwimmerID(Users.getActiveUserID())));
                 ResultSet results = Application.database.runQuery(statement);       // ...run the query!
 
                 if (results != null)        // If some results are returned from the query...
@@ -161,11 +170,11 @@ public class ProgressionGraphSceneController
                 }
             }
         }else if(buttonCase == 3){
-            PreparedStatement statement = Application.database.newStatement("SELECT PrevFly50m.PB1, PrevFly50m.PB1Date, PrevFly50m.PB2, PrevFly50m.PB2Date, PrevFly50m.PB3, PrevFly50m.PB3Date, PrevFly50m.PB4, PrevFly50m.PB4Date, PBTimes.Fly50m, PBTimes.Fly50mDate FROM PrevFly50m INNER JOIN PBTimes ON PBTimes.PrevFly50mID = PrevFly50m.PrevFlyID WHERE PBTimes.PBID = 1;"); 
-            XYChart.Series<String, Number> series4 = new XYChart.Series<String, Number>();
+            PreparedStatement statement = Application.database.newStatement("SELECT PrevFly50m.PB1, PrevFly50m.PB1Date, PrevFly50m.PB2, PrevFly50m.PB2Date, PrevFly50m.PB3, PrevFly50m.PB3Date, PrevFly50m.PB4, PrevFly50m.PB4Date, PBTimes.Fly50m, PBTimes.Fly50mDate FROM PrevFly50m INNER JOIN PBTimes ON PBTimes.PrevFly50mID = PrevFly50m.PrevFlyID WHERE PBTimes.PBID = ?;"); 
+
             if (statement != null)      // Assuming the statement correctly initated...
             {
-                //statement.setInt(1, Users.getSwimmerID(Users.getActiveUserID()));
+                statement.setInt(1, Users.getPBID(Users.getSwimmerID(Users.getActiveUserID())));
                 ResultSet results = Application.database.runQuery(statement);       // ...run the query!
 
                 if (results != null)        // If some results are returned from the query...
@@ -187,11 +196,11 @@ public class ProgressionGraphSceneController
                 }
             }
         }else if (buttonCase == 4){
-            PreparedStatement statement = Application.database.newStatement("SELECT PrevFree100m.PB1, PrevFree100m.PB1Date, PrevFree100m.PB2, PrevFree100m.PB2Date, PrevFree100m.PB3, PrevFree100m.PB3Date, PrevFree100m.PB4, PrevFree100m.PB4Date, PBTimes.Free100m, PBTimes.Free100mDate FROM PrevFree100m INNER JOIN PBTimes ON PBTimes.PrevFree100mID = PrevFree100m.PrevFreeID WHERE PBTimes.PBID = 1;"); 
-            XYChart.Series<String, Number> series5 = new XYChart.Series<String, Number>();
+            PreparedStatement statement = Application.database.newStatement("SELECT PrevFree100m.PB1, PrevFree100m.PB1Date, PrevFree100m.PB2, PrevFree100m.PB2Date, PrevFree100m.PB3, PrevFree100m.PB3Date, PrevFree100m.PB4, PrevFree100m.PB4Date, PBTimes.Free100m, PBTimes.Free100mDate FROM PrevFree100m INNER JOIN PBTimes ON PBTimes.PrevFree100mID = PrevFree100m.PrevFreeID WHERE PBTimes.PBID = ?;"); 
+
             if (statement != null)      // Assuming the statement correctly initated...
             {
-                //statement.setInt(1, Users.getSwimmerID(Users.getActiveUserID()));
+                statement.setInt(1, Users.getPBID(Users.getSwimmerID(Users.getActiveUserID())));
                 ResultSet results = Application.database.runQuery(statement);       // ...run the query!
 
                 if (results != null)        // If some results are returned from the query...
@@ -213,11 +222,11 @@ public class ProgressionGraphSceneController
                 }
             }
         }else if(buttonCase == 5){
-            PreparedStatement statement = Application.database.newStatement("SELECT PrevBack100m.PB1, PrevBack100m.PB1Date, PrevBack100m.PB2, PrevBack100m.PB2Date, PrevBack100m.PB3, PrevBack100m.PB3Date, PrevBack100m.PB4, PrevBack100m.PB4Date, PBTimes.Back100m, PBTimes.Back100mDate FROM PrevBack100m INNER JOIN PBTimes ON PBTimes.PrevBack100mID = PrevBack100m.PrevBackID WHERE PBTimes.PBID = 1;"); 
-            XYChart.Series<String, Number> series6 = new XYChart.Series<String, Number>();
+            PreparedStatement statement = Application.database.newStatement("SELECT PrevBack100m.PB1, PrevBack100m.PB1Date, PrevBack100m.PB2, PrevBack100m.PB2Date, PrevBack100m.PB3, PrevBack100m.PB3Date, PrevBack100m.PB4, PrevBack100m.PB4Date, PBTimes.Back100m, PBTimes.Back100mDate FROM PrevBack100m INNER JOIN PBTimes ON PBTimes.PrevBack100mID = PrevBack100m.PrevBackID WHERE PBTimes.PBID = ?;"); 
+
             if (statement != null)      // Assuming the statement correctly initated...
             {
-                //statement.setInt(1, Users.getSwimmerID(Users.getActiveUserID()));
+                statement.setInt(1, Users.getPBID(Users.getSwimmerID(Users.getActiveUserID())));
                 ResultSet results = Application.database.runQuery(statement);       // ...run the query!
 
                 if (results != null)        // If some results are returned from the query...
@@ -239,11 +248,11 @@ public class ProgressionGraphSceneController
                 }
             }
         }else if(buttonCase == 6){
-            PreparedStatement statement = Application.database.newStatement("SELECT PrevBreast100m.PB1, PrevBreast100m.PB1Date, PrevBreast100m.PB2, PrevBreast100m.PB2Date, PrevBreast100m.PB3, PrevBreast100m.PB3Date, PrevBreast100m.PB4, PrevBreast100m.PB4Date, PBTimes.Breast100m, PBTimes.Breast100mDate FROM PrevBreast100m INNER JOIN PBTimes ON PBTimes.PrevBreast100mID = PrevBreast100m.PrevBreastID WHERE PBTimes.PBID = 1;"); 
-            XYChart.Series<String, Number> series7 = new XYChart.Series<String, Number>();
+            PreparedStatement statement = Application.database.newStatement("SELECT PrevBreast100m.PB1, PrevBreast100m.PB1Date, PrevBreast100m.PB2, PrevBreast100m.PB2Date, PrevBreast100m.PB3, PrevBreast100m.PB3Date, PrevBreast100m.PB4, PrevBreast100m.PB4Date, PBTimes.Breast100m, PBTimes.Breast100mDate FROM PrevBreast100m INNER JOIN PBTimes ON PBTimes.PrevBreast100mID = PrevBreast100m.PrevBreastID WHERE PBTimes.PBID = ?;"); 
+
             if (statement != null)      // Assuming the statement correctly initated...
             {
-                //statement.setInt(1, Users.getSwimmerID(Users.getActiveUserID()));
+                statement.setInt(1, Users.getPBID(Users.getSwimmerID(Users.getActiveUserID())));
                 ResultSet results = Application.database.runQuery(statement);       // ...run the query!
 
                 if (results != null)        // If some results are returned from the query...
@@ -265,11 +274,11 @@ public class ProgressionGraphSceneController
                 }
             }
         }else if(buttonCase == 7){
-            PreparedStatement statement = Application.database.newStatement("SELECT PrevFly100m.PB1, PrevFly100m.PB1Date, PrevFly100m.PB2, PrevFly100m.PB2Date, PrevFly100m.PB3, PrevFly100m.PB3Date, PrevFly100m.PB4, PrevFly100m.PB4Date, PBTimes.Fly100m, PBTimes.Fly100mDate FROM PrevFly100m INNER JOIN PBTimes ON PBTimes.PrevFly100mID = PrevFly100m.PrevFlyID WHERE PBTimes.PBID = 1;"); 
-            XYChart.Series<String, Number> series8 = new XYChart.Series<String, Number>();
+            PreparedStatement statement = Application.database.newStatement("SELECT PrevFly100m.PB1, PrevFly100m.PB1Date, PrevFly100m.PB2, PrevFly100m.PB2Date, PrevFly100m.PB3, PrevFly100m.PB3Date, PrevFly100m.PB4, PrevFly100m.PB4Date, PBTimes.Fly100m, PBTimes.Fly100mDate FROM PrevFly100m INNER JOIN PBTimes ON PBTimes.PrevFly100mID = PrevFly100m.PrevFlyID WHERE PBTimes.PBID = ?;"); 
+
             if (statement != null)      // Assuming the statement correctly initated...
             {
-                //statement.setInt(1, Users.getSwimmerID(Users.getActiveUserID()));
+                statement.setInt(1, Users.getPBID(Users.getSwimmerID(Users.getActiveUserID())));
                 ResultSet results = Application.database.runQuery(statement);       // ...run the query!
 
                 if (results != null)        // If some results are returned from the query...
@@ -300,10 +309,20 @@ public class ProgressionGraphSceneController
         stage.close();
     }
 
-    @FXML void radioClicked(){
+    @FXML void radioClicked() throws SQLException{
         int buttonCase = 0;
+        ProgressionGraph.getData().remove(series);
+        ProgressionGraph.getData().remove(series2);
+        ProgressionGraph.getData().remove(series3);
+        ProgressionGraph.getData().remove(series4);
+        ProgressionGraph.getData().remove(series5);
+        ProgressionGraph.getData().remove(series6);
+        ProgressionGraph.getData().remove(series7);
+        ProgressionGraph.getData().remove(series8);
+
         if (Button50m.isSelected()){
             if(FreeButton.isSelected()){
+                ProgressionGraph.getData().remove(series);
                 buttonCase = 0;
                 loadProgressionGraph(buttonCase);
             }else if(BackButton.isSelected()){
@@ -343,7 +362,7 @@ public class ProgressionGraphSceneController
             FlyButton.setSelected(false);
         }
     }
-    
+
     @FXML void button50mClicked(){
         if (Button50m.isSelected()){
             FreeButton.setSelected(false);
