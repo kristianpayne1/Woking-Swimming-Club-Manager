@@ -6,10 +6,11 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProgressionGraphSceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.92" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProgressionGraphSceneController">
    <children>
       <Label fx:id="GraphLabel" layoutX="190.0" layoutY="8.0" text="Progression Graphs">
          <font>
@@ -25,32 +26,38 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </LineChart>
-      <RadioButton fx:id="Button50m" layoutX="235.0" layoutY="57.0" mnemonicParsing="false" text="50m">
+      <RadioButton fx:id="Button50m" layoutX="235.0" layoutY="57.0" mnemonicParsing="false" onMouseClicked="#button50mClicked" text="50m">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="distance" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="Button100m" layoutX="305.0" layoutY="57.0" mnemonicParsing="false" onMouseClicked="#button100mClicked" text="100m" toggleGroup="$distance">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="Button100m" layoutX="305.0" layoutY="57.0" mnemonicParsing="false" text="100m">
+      <RadioButton fx:id="FreeButton" layoutX="164.0" layoutY="85.0" mnemonicParsing="false" onAction="#radioClicked" text="Free">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="stroke" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="BackButton" layoutX="234.0" layoutY="85.0" mnemonicParsing="false" onAction="#radioClicked" text="Back" toggleGroup="$stroke">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="FreeButton" layoutX="164.0" layoutY="85.0" mnemonicParsing="false" text="Free">
+      <RadioButton fx:id="BreastButton" layoutX="305.0" layoutY="85.0" mnemonicParsing="false" onAction="#radioClicked" text="Breast" toggleGroup="$stroke">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="BackButton" layoutX="234.0" layoutY="85.0" mnemonicParsing="false" text="Back">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="BreastButton" layoutX="305.0" layoutY="85.0" mnemonicParsing="false" text="Breast">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="FlyButton" layoutX="388.0" layoutY="85.0" mnemonicParsing="false" text="Fly">
+      <RadioButton fx:id="FlyButton" layoutX="388.0" layoutY="85.0" mnemonicParsing="false" onAction="#radioClicked" text="Fly" toggleGroup="$stroke">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
