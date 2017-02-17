@@ -182,6 +182,31 @@ public class Users
         }
         return PBID;
     }
+    
+    public static Integer getTimetableID(int swimmerID){
+        int timetableID = 0;
+        
+        PreparedStatement statement2 = Application.database.newStatement("SELECT Squads.TimetableID FROM Squads INNER JOIN Swimmers ON Swimmers.SquadID = Squads.SquadID WHERE Swimmers.SwimmerID = ?;"); 
+        try{
+            if (statement2 != null)
+            {
+                statement2.setInt(1, swimmerID);
+                ResultSet results = Application.database.runQuery(statement2);
+
+                if (results != null)
+                {
+                    timetableID = new Integer (results.getInt("TimetableID"));
+                }
+            }
+        }
+        catch (SQLException resultsexception)
+        {
+            System.out.println("Database result processing error: " + resultsexception.getMessage());
+            System.out.println("No active users???");
+        }
+        return timetableID;
+        
+    }
 
     public static String getUsername(Integer CreaterID)
     {

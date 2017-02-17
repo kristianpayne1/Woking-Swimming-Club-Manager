@@ -8,6 +8,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.event.EventHandler;
 import javafx.stage.WindowEvent;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -29,35 +32,13 @@ public class TimetableSceneController
     @FXML   private Label  SunLabel;
     @FXML   private Label  MorningLabel;
     @FXML   private Label  EveningLabel;
+    @FXML   private Label poolLabel1;
+    @FXML   private Label poolLabel2;
+    @FXML   private Label coachLabel1;
+    @FXML   private Label coachLabel2;
     @FXML   private Button BackButton;
-    @FXML   private Rectangle TimeBox1;
-    @FXML   private Rectangle TimeBox2;
-    @FXML   private Rectangle TimeBox3;
-    @FXML   private Rectangle TimeBox4;
-    @FXML   private Rectangle TimeBox5;
-    @FXML   private Rectangle TimeBox6;
-    @FXML   private Rectangle TimeBox7;
-    @FXML   private Rectangle TimeBox8;
-    @FXML   private Rectangle TimeBox9;
-    @FXML   private Rectangle TimeBox10;
-    @FXML   private Rectangle TimeBox11;
-    @FXML   private Rectangle TimeBox12;
-    @FXML   private Rectangle TimeBox13;
-    @FXML   private Rectangle TimeBox14;
-    @FXML   private Rectangle TimeBox15;
-    @FXML   private Rectangle TimeBox16;
-    @FXML   private Rectangle TimeBox17;
-    @FXML   private Rectangle TimeBox18;
-    @FXML   private Rectangle TimeBox19;
-    @FXML   private Rectangle TimeBox20;
-    @FXML   private Rectangle TimeBox21;
-    @FXML   private Rectangle TimeBox22;
-    @FXML   private Rectangle TimeBox23;
-    @FXML   private Rectangle TimeBox24;
-    @FXML   private Rectangle TimeBox25;
-    @FXML   private Rectangle TimeBox26;
-    @FXML   private Rectangle TimeBox27;
-    @FXML   private Rectangle TimeBox28;
+    @FXML   private Rectangle TimeBox1, TimeBox2, TimeBox3, TimeBox4, TimeBox5, TimeBox6, TimeBox7, TimeBox8, TimeBox9, TimeBox10, TimeBox11, TimeBox12, TimeBox13, TimeBox14, TimeBox15, TimeBox16, TimeBox17, TimeBox18, TimeBox19, TimeBox20, TimeBox21, TimeBox22, TimeBox23, TimeBox24, TimeBox25, TimeBox26, TimeBox27, TimeBox28;
+    @FXML   private Label TimeLabel1, TimeLabel2, TimeLabel3, TimeLabel4, TimeLabel5, TimeLabel6, TimeLabel7, TimeLabel8, TimeLabel9, TimeLabel10, TimeLabel11, TimeLabel12, TimeLabel13, TimeLabel14, TimeLabel15, TimeLabel16, TimeLabel17, TimeLabel18, TimeLabel19, TimeLabel20, TimeLabel21, TimeLabel22, TimeLabel23, TimeLabel24, TimeLabel25, TimeLabel26, TimeLabel27, TimeLabel28;
 
     public TimetableSceneController()
     {
@@ -103,7 +84,7 @@ public class TimetableSceneController
             Application.terminate();
         }
 
-        System.out.println("Populating scene with items from the database...");       
+        loadTimeTable();
 
     }
 
@@ -118,31 +99,74 @@ public class TimetableSceneController
         stage.close();
     }
 
-    /*void openNewScene(int MessageID)
-    {
+    public void loadTimeTable() throws SQLException{
+        System.out.println("Loading timetable...");
 
-    FXMLLoader loader = new FXMLLoader(Application.class.getResource("messageGUI.fxml"));
+        PreparedStatement statement = Application.database.newStatement("SELECT Timetables.P1, Timetables.P2, Timetables.P3, Timetables.P4, Timetables.P5, Timetables.P6, Timetables.P7, Timetables.P8, Timetables.P9, Timetables.P10, Timetables.P11, Timetables.P12, Timetables.P13, Timetables.P14 FROM Timetables INNER JOIN Squads ON Timetables.TimetableID = Squads.TimetableID WHERE Squads.TimetableID = ?"); 
+        PreparedStatement statement2 = Application.database.newStatement("SELECT Timetables.C1, Timetables.C2, Timetables.C3, Timetables.C4, Timetables.C5, Timetables.C6, Timetables.C7, Timetables.C8, Timetables.C9, Timetables.C10, Timetables.C11, Timetables.C12, Timetables.C13, Timetables.C14 FROM Timetables INNER JOIN Squads ON Timetables.TimetableID = Squads.TimetableID WHERE Squads.TimetableID = ?"); 
 
-    try
-    {
-    Stage stage3 = new Stage();
-    stage3.setTitle("Reply");
-    stage3.setScene(new Scene(loader.load()));
-    stage.setResizable(false);
-    stage3.show();           
-    MessageSceneController controller4 = loader.getController();
-    controller4.prepareStageEvents(stage3);
+        if (statement != null)      // Assuming the statement correctly initated...
+        {
+            statement.setInt(1, Users.getTimetableID(Users.getSwimmerID(Users.getActiveUserID())));
+            ResultSet results = Application.database.runQuery(statement);       // ...run the query!
 
-    controller4.setParent2(this);
-    if (MessageID != 0) {
-    controller4.loadItem(MessageID);
-    }
-    }
-    catch (Exception ex)
-    {
-    System.out.println(ex.getMessage());
-    }
+            if (results != null)        // If some results are returned from the query...
+            {
+                try {                               // ...add each one to the list.
+                    while (results.next()) {                                               
+                        TimeLabel1.setText(results.getString("P1"));
+                        TimeLabel3.setText(results.getString("P2"));
+                        TimeLabel5.setText(results.getString("P3"));
+                        TimeLabel7.setText(results.getString("P4"));
+                        TimeLabel9.setText(results.getString("P5"));
+                        TimeLabel11.setText(results.getString("P6"));
+                        TimeLabel13.setText(results.getString("P7"));
+                        TimeLabel15.setText(results.getString("P8"));
+                        TimeLabel17.setText(results.getString("P9"));
+                        TimeLabel19.setText(results.getString("P10"));
+                        TimeLabel21.setText(results.getString("P11"));
+                        TimeLabel23.setText(results.getString("P12"));
+                        TimeLabel25.setText(results.getString("P13"));
+                        TimeLabel27.setText(results.getString("P14"));
+                    }
+                }
+                catch (SQLException resultsexception)       // Catch any error processing the results.
+                {
+                    System.out.println("Database result processing error: " + resultsexception.getMessage());
+                }
+            }
+        }
 
+        if (statement != null)      // Assuming the statement correctly initated...
+        {
+            statement2.setInt(1, Users.getTimetableID(Users.getSwimmerID(Users.getActiveUserID())));
+            ResultSet results2 = Application.database.runQuery(statement2);       // ...run the query!
+
+            if (results2 != null)        // If some results are returned from the query...
+            {
+                try {                               // ...add each one to the list.
+                    while (results2.next()) {                                               
+                        TimeLabel2.setText(results2.getString("C1"));
+                        TimeLabel4.setText(results2.getString("C2"));
+                        TimeLabel6.setText(results2.getString("C3"));
+                        TimeLabel8.setText(results2.getString("C4"));
+                        TimeLabel10.setText( results2.getString("C5"));
+                        TimeLabel12.setText(results2.getString("C6"));
+                        TimeLabel14.setText(results2.getString("C7"));
+                        TimeLabel16.setText(results2.getString("C8"));
+                        TimeLabel18.setText(results2.getString("C9"));
+                        TimeLabel20.setText(results2.getString("C10"));
+                        TimeLabel22.setText(results2.getString("C11"));
+                        TimeLabel24.setText(results2.getString("C12"));
+                        TimeLabel26.setText( results2.getString("C13"));
+                        TimeLabel28.setText( results2.getString("C14"));
+                    }
+                }
+                catch (SQLException resultsexception)       // Catch any error processing the results.
+                {
+                    System.out.println("Database result processing error: " + resultsexception.getMessage());
+                }
+            }
+        }
     }
-     */
 }
