@@ -46,13 +46,12 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="AddressLabel" alignment="TOP_LEFT" layoutX="251.0" layoutY="184.0" prefHeight="128.0" prefWidth="169.0" text="Address:" wrapText="true">
+      <Label fx:id="AddressLabel" alignment="TOP_LEFT" layoutX="251.0" layoutY="184.0" prefHeight="136.0" prefWidth="169.0" text="Address:" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button fx:id="SignupButton" layoutX="251.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#signUpButtonClicked" prefHeight="25.0" prefWidth="169.0" text="Sign Up" />
-      <Button fx:id="InfoButton" layoutX="251.0" layoutY="348.0" mnemonicParsing="false" onMouseClicked="#infoButtonClicked" prefHeight="25.0" prefWidth="169.0" text="More Pool Information" />
+      <Button fx:id="SignupButton" layoutX="251.0" layoutY="330.0" mnemonicParsing="false" onMouseClicked="#signUpButtonClicked" prefHeight="48.0" prefWidth="169.0" text="Sign Up" />
       <Label fx:id="SignedLabel" layoutX="442.0" layoutY="40.0" text="Signed Swimmers:">
          <font>
             <Font name="System Bold" size="12.0" />

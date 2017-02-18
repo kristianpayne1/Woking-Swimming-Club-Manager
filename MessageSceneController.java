@@ -134,49 +134,5 @@ public class MessageSceneController
         subjectField.setText("RE:"+subject);
     }
 }
-/*
- *public void loadItem(int id)
-{        
-thing = Thing.getById(id);
-nameTextField.setText(thing.name);
 
-List<Category> targetList = categoryChoiceBox.getItems();
-
-for(Category c : targetList)
-{
-if (c.id == thing.categoryId)
-{
-categoryChoiceBox.getSelectionModel().select(c);
-}                
-}
-
-}
-
-@FXML   void saveButtonClicked()
-{
-System.out.println("Save button clicked!");        
-
-if (thing == null)
-{   
-thing = new Thing(0, "", 0);
-}
-
-thing.name = nameTextField.getText();
-
-Category selectedCategory = (Category) categoryChoiceBox.getSelectionModel().getSelectedItem();        
-thing.categoryId = selectedCategory.id;
-
-thing.save();
-
-parent.initialize();
-
-stage.close();
-}
-
-@FXML   void cancelButtonClicked()
-{
-System.out.println("Cancel button clicked!");        
-stage.close();
-}
- */
 

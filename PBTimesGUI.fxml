@@ -14,7 +14,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="tableView50m" layoutX="59.0" layoutY="81.0" prefHeight="78.0" prefWidth="301.0">
+      <TableView fx:id="tableView50m" layoutX="59.0" layoutY="81.0" prefHeight="67.0" prefWidth="301.0">
         <columns>
           <TableColumn fx:id="tableColumnFree50m" prefWidth="75.0" text="Free" />
           <TableColumn fx:id="tableColumnBack50m" prefWidth="75.0" text="Back" />
@@ -22,7 +22,7 @@
             <TableColumn fx:id="tableColumnFly50m" prefWidth="75.0" text="Fly" />
         </columns>
       </TableView>
-      <TableView fx:id="tableView100m" layoutX="59.0" layoutY="190.0" prefHeight="78.0" prefWidth="301.0">
+      <TableView fx:id="tableView100m" layoutX="59.0" layoutY="190.0" prefHeight="67.0" prefWidth="301.0">
          <columns>
             <TableColumn fx:id="tableColumnFree100m" prefWidth="75.0" text="Free" />
             <TableColumn fx:id="tableColumnBack100m" prefWidth="75.0" text="Back" />
@@ -40,7 +40,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="ViewProgressButton" layoutX="59.0" layoutY="289.0" mnemonicParsing="false" onMouseClicked="#progressionButtonClicked" prefHeight="25.0" prefWidth="301.0" text="View Progression Graphs" />
+      <Button fx:id="ViewProgressButton" layoutX="59.0" layoutY="279.0" mnemonicParsing="false" onMouseClicked="#progressionButtonClicked" prefHeight="35.0" prefWidth="301.0" text="View Progression Graphs" />
       <Button fx:id="backButton" layoutX="353.0" layoutY="19.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" text="Back" />
    </children>
 </AnchorPane>

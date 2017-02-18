@@ -93,7 +93,6 @@ public class Message
             statement.setInt(3, Users.getActiveUserID());
             statement.setString(4, message);
             statement.setDate(5, sqlDate);
-            //statement.setInt(5, ParentID);
 
         }
         catch(SQLException e)

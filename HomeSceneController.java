@@ -9,6 +9,10 @@ import javafx.stage.WindowEvent;
 import java.sql.SQLException;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import java.util.Optional;
+import javafx.scene.control.ButtonType;
 
 public class HomeSceneController 
 {
@@ -16,7 +20,6 @@ public class HomeSceneController
     private LoginSceneController parent;
 
     @FXML   private Label homeTitle;
-    @FXML   private Label ActiveUserLabel;
     @FXML   private Button timetableButton;
     @FXML   private Button PBButton;
     @FXML   private Button openMeetButton;
@@ -39,16 +42,9 @@ public class HomeSceneController
             {
                 public void handle(WindowEvent we)
                 {
+                    we.consume();
                     System.out.println("Close button was clicked!");
-                    stage.close();
-                    try{
-                        Users.logOffUser();
-                    }
-                    catch (SQLException se)
-                    {
-                        se.printStackTrace();
-                    }
-                    Application.terminate();
+                    exitButtonClicked();
                 }
             });
     }         
@@ -65,7 +61,6 @@ public class HomeSceneController
             assert galasButton != null : "Can't find galasButton";
             assert inboxButton != null : "Can't find inboxButton";
             assert exitButton != null : "Can't find exitButton";
-            assert ActiveUserLabel != null : "Can't find Active User Label";
         }
         catch (AssertionError ae)
         {
@@ -73,29 +68,26 @@ public class HomeSceneController
             Application.terminate();
         }
 
-        System.out.println("Populating scene with items from the database...");  
-        
-        //int CreaterID = Users.getActiveUserID();
-        //ActiveUserLabel.setText("Logged in as: " + Users.getUsername(CreaterID));
-        
+        System.out.println("Populating scene with items from the database...");
+
         Image imageTimetable = new Image (getClass().getResourceAsStream("Images/timetable.png"));
         timetableButton.setGraphic(new ImageView(imageTimetable));
-        
+
         Image imagePb = new Image (getClass().getResourceAsStream("Images/pb.png"));
         PBButton.setGraphic(new ImageView(imagePb));
-        
+
         Image imageOpenMeet = new Image (getClass().getResourceAsStream("Images/openmeets.png"));
         openMeetButton.setGraphic(new ImageView(imageOpenMeet));
-        
+
         Image imageGalas = new Image (getClass().getResourceAsStream("Images/galas.png"));
         galasButton.setGraphic(new ImageView(imageGalas));
-        
+
         Image imageInbox = new Image (getClass().getResourceAsStream("Images/inbox.png"));
         inboxButton.setGraphic(new ImageView(imageInbox));
-        
+
         Image imageExit = new Image (getClass().getResourceAsStream("Images/logoff.png"));
         exitButton.setGraphic(new ImageView(imageExit));
-
+        
     }
 
     public void setParent(LoginSceneController parent)
@@ -110,17 +102,27 @@ public class HomeSceneController
 
     @FXML void exitButtonClicked() {
         System.out.println("Exit button was clicked!");
-        stage.close();
-        try{
-            Users.logOffUser();
-        }
-        catch (SQLException se)
-        {
-            se.printStackTrace();
-        }
-        Application.terminate();
-    }
 
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Exit Confirmation");
+        alert.setHeaderText("Are you sure you want to exit?");
+        alert.setContentText("By exiting, you will be logged off");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            stage.close();
+            try{
+                Users.logOffUser();
+            }
+            catch (SQLException se)
+            {
+                se.printStackTrace();
+            }
+            Application.terminate();
+        }else{
+        }// Call the terminate method in the main Application class.
+
+    }
     void openNewSceneInbox()
     {
 
@@ -218,7 +220,7 @@ public class HomeSceneController
             System.out.println(ex.getMessage());
         }
     }
-    
+
     @FXML   void OpenMeetButtonClicked(){
         System.out.println("Open meet button clicked");
         int sceneType = 2;

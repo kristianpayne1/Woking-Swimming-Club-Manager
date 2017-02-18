@@ -85,6 +85,8 @@ public class TimetableSceneController
         }
 
         loadTimeTable();
+        
+        SquadLabel.setText("Squad: " + Users.getSquadName(Users.getSwimmerID(Users.getActiveUserID())));
 
     }
 

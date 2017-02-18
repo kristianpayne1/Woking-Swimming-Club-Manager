@@ -20,10 +20,5 @@
       <Button fx:id="inboxButton" alignment="CENTER" contentDisplay="TOP" layoutX="204.0" layoutY="225.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#inboxButtonClicked" prefHeight="110.0" prefWidth="119.0" text="Inbox" textAlignment="CENTER" wrapText="true" />
       <Button fx:id="exitButton" alignment="CENTER" contentDisplay="TOP" layoutX="357.0" layoutY="225.0" mnemonicParsing="false" onMouseClicked="#exitButtonClicked" prefHeight="110.0" prefWidth="119.0" text="Exit" textAlignment="CENTER" wrapText="true" />
       <Canvas height="73.0" layoutX="14.0" layoutY="14.0" width="81.0" />
-      <Label fx:id="ActiveUserLabel" layoutX="33.0" layoutY="14.0" text="Logged in as: " textAlignment="CENTER">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

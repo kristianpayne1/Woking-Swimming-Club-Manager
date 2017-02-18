@@ -28,7 +28,6 @@ public class CompetitionSceneController
 
     @FXML private Button BackButton;
     @FXML private Button SignupButton;
-    @FXML private Button InfoButton;
     @FXML private Label TitleLabel;
     @FXML private Label NameLabel;
     @FXML private Label StartLabel;
@@ -76,7 +75,6 @@ public class CompetitionSceneController
         {
             assert BackButton != null: "can't find back button";
             assert SignupButton != null :"Can't find Sign up button";
-            assert InfoButton != null :"Can't find info button";
             assert TitleLabel != null :"Can't find title label";
             assert NameLabel != null :"Can't find name label";
             assert StartLabel != null :"Can't find start label";
@@ -385,12 +383,5 @@ public class CompetitionSceneController
             }
         }
     }
-
-    @FXML void infoButtonClicked()
-    {
-        System.out.println("More info button clicked");
-
-    }
-
 }
 

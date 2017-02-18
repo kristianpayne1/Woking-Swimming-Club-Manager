@@ -186,7 +186,7 @@ public class Users
     public static Integer getTimetableID(int swimmerID){
         int timetableID = 0;
         
-        PreparedStatement statement2 = Application.database.newStatement("SELECT Squads.TimetableID FROM Squads INNER JOIN Swimmers ON Swimmers.SquadID = Squads.SquadID WHERE Swimmers.SwimmerID = ?;"); 
+        PreparedStatement statement2 = Application.database.newStatement("SELECT Squads.TimetableID FROM Squads INNER JOIN Swimmers ON Swimmers.SquadID = Squads.SquadID WHERE Swimmers.SwimmerID = ?"); 
         try{
             if (statement2 != null)
             {
@@ -205,6 +205,31 @@ public class Users
             System.out.println("No active users???");
         }
         return timetableID;
+        
+    }
+    
+    public static String getSquadName(int swimmerID){
+        String squadName = null;
+        
+        PreparedStatement statement2 = Application.database.newStatement("SELECT Squads.Name FROM Squads INNER JOIN Swimmers ON Squads.SquadID = Swimmers.SquadID WHERE Swimmers.SwimmerID = ?"); 
+        try{
+            if (statement2 != null)
+            {
+                statement2.setInt(1, swimmerID);
+                ResultSet results = Application.database.runQuery(statement2);
+
+                if (results != null)
+                {
+                    squadName = new String (results.getString("Name"));
+                }
+            }
+        }
+        catch (SQLException resultsexception)
+        {
+            System.out.println("Database result processing error: " + resultsexception.getMessage());
+            System.out.println("No active users???");
+        }
+        return squadName;
         
     }
 
