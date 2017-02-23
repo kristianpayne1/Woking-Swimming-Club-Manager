@@ -341,7 +341,7 @@ public class CompetitionSceneController
                 try
                 {
                     statement.setInt(1, OpenMeetID);
-                    statement.setInt(2, Users.getActiveUserID());
+                    statement.setInt(2, Users.getSwimmerID(Users.getActiveUserID()));
 
                 }
                 catch(SQLException e)
@@ -364,7 +364,7 @@ public class CompetitionSceneController
                 try
                 {
                     statement.setInt(1, GalaID);
-                    statement.setInt(2, Users.getActiveUserID());
+                    statement.setInt(2, Users.getSwimmerID(Users.getActiveUserID()));
 
                 }
                 catch(SQLException e)
