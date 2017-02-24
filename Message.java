@@ -84,7 +84,7 @@ public class Message
         java.util.Date utilDate = new java.util.Date();
         java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-        PreparedStatement statement = Application.database.newStatement("INSERT INTO Message (MessageID, RecieverID, Subject, CreaterID, MessageBody, CreateDate, ParentID, Read) VALUES (NULL, ?, ?, ?, ?, ?, 1, 0)");
+        PreparedStatement statement = Application.database.newStatement("INSERT INTO Message (MessageID, RecieverID, Subject, CreaterID, MessageBody, CreateDate) VALUES (NULL, ?, ?, ?, ?, ?)");
 
         try
         {
